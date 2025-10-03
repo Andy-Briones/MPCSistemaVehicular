@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('mpcscaracteristicas', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
             $table->integer('asientos');
             $table->integer('pasajeros');
             $table->integer('ruedas');
@@ -21,10 +22,10 @@ return new class extends Migration
             $table->decimal('longitud', 10, 2);
             $table->decimal('altura', 10, 2);
             $table->decimal('ancho', 10, 2);
-            $table->decimal('cilindrada', 10, 2);
-            $table->decimal('pesoBruto', 10, 2);
-            $table->decimal('pesoNeto', 10, 2);
-            $table->decimal('cargaUtil', 10, 2);
+            $table->decimal('cilindrada', 10, 3);
+            $table->decimal('pesoBruto', 10, 3);
+            $table->decimal('pesoNeto', 10, 3);
+            $table->decimal('cargaUtil', 10, 3);
             $table->timestamps();
         });
     }

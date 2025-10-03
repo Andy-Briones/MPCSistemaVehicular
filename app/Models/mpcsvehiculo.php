@@ -7,15 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class mpcsvehiculo extends Model
 {
     //
-    public function Conductor()
+    protected $table = 'mpcsvehiculos';
+    public function conductor()
     {
-        return $this->belongsTo(mpcsconductor::class);
+        return $this->belongsTo(mpcsconductor::class, 'mpcsconductor_id', 'id');
     }
-    public function Caracteristica()
+    public function caracteristica()
     {
-        return $this->belongsTo(mpcscaracteristica::class);
+        return $this->belongsTo(mpcscaracteristica::class, 'mpcscaracteristica_id', 'id');
     }
-    public function Control()
+    public function control()
     {
         return $this->hasMany(mpcscontrol::class);
     }

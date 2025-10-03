@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class mpcsconductor extends Model
 {
     //
-    public function Vehiculo()
+    protected $table = 'mpcsconductors';
+    public function vehiculo()
     {
         return $this->hasMany(mpcsvehiculo::class);
     }

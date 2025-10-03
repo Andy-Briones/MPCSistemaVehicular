@@ -10,8 +10,8 @@ class CaracteristicaController extends Controller
     //
     public function index()
     {
-        $categories['product__categories'] = mpcscaracteristica::paginate(5);
-        return view('caracteristica.index', $categories);
+        $caracteristica['mpcscaracteristicas'] = mpcscaracteristica::paginate(5);
+        return view('caracteristica.index', $caracteristica);
     }
     
     public function create()
