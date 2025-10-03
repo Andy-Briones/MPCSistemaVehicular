@@ -24,7 +24,7 @@ return new class extends Migration
             $table->decimal('cilindrada', 10, 2);
             $table->decimal('pesoBruto', 10, 2);
             $table->decimal('pesoNeto', 10, 2);
-            $table->decimal('cargaUtil');
+            $table->decimal('cargaUtil', 10, 2);
             $table->timestamps();
         });
     }
