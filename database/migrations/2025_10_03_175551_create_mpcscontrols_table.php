@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('mpcscontrols', function (Blueprint $table) {
             $table->id();
-            $table->string('soatInicial');
-            $table->string('soatFinal');
-            $table->string('revisionTecIn');
-            $table->string('revisionTecFin');
+            $table->date('soatInicial');
+            $table->date('soatFinal');
+            $table->date('revisionTecIn');
+            $table->date('revisionTecFin');
             $table->string('tarjetaP');
             $table->string('lugarD');
             $table->foreignId('mpcsvehiculo_id')->constrained('mpcsvehiculos')->onDelete('cascade');

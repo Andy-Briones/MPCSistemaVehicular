@@ -10,7 +10,7 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h3 class="mb-0">🚗 Lista de Vehículos</h3>
         <a href="{{ url('vehiculos/create') }}" class="btn btn-primary">➕ Nuevo Vehículo</a>
-        <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">⬅️ Cancelar</a>
+        <a href="{{ url("/") }}" class="btn btn-outline-secondary">⬅️ Cancelar</a>
     </div>
 
     <div class="card shadow border-0">

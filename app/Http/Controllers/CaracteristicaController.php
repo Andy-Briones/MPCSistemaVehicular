@@ -22,7 +22,13 @@ class CaracteristicaController extends Controller
     {
         $caracteristica = request()->except('_token');
         mpcscaracteristica::insert($caracteristica);
-        return redirect('caracteristicas');//->with('mensaje', 'Categoría agregada con éxito');
+        // Si la petición es AJAX, devuelve JSON
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
+        // Por compatibilidad si alguien envía normal
+        return redirect()->back()->with('mensaje', 'Característica agregada');
     }
     public function show()
     {

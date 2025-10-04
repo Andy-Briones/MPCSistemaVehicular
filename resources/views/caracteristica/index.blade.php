@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Característica</title>
+    @vite(['resources/css/caracteristicafiles/caracteristicaindex.css', 'resources/js/app.js'])
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-4">
@@ -13,7 +15,7 @@
         <a href="{{ url('caracteristicas/create') }}" class="btn btn-primary">
             ➕ Agregar Característica
         </a>
-        <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">⬅️ Cancelar</a>
+        <a href="{{ url("/") }}" class="btn btn-outline-secondary">⬅️ Cancelar</a>
     </div>
 
     <div class="card shadow border-0">

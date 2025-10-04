@@ -1,0 +1,129 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+/* ====== Contenedor ====== */
+body {
+    background-color: #f8f9fa;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ====== Título principal ====== */
+h3 {
+    font-weight: 600;
+    color: #0d6efd;
+}
+
+/* ====== Card ====== */
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card-body {
+    padding: 0;
+}
+
+/* ====== Tabla ====== */
+.table {
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+.table thead th {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #fdfdfd;
+}
+
+.table-striped tbody tr:hover {
+    background-color: #f1f5ff;
+    transition: 0.2s;
+}
+
+/* ====== Celdas ====== */
+.table td, 
+.table th {
+    padding: 0.75rem;
+    text-align: center;
+}
+
+/* ====== Botones de acción ====== */
+.btn-sm {
+    border-radius: 8px;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.85rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #b02a37;
+    transform: scale(1.05);
+}
+
+/* ====== Botones principales ====== */
+.btn-primary {
+    border-radius: 8px;
+    font-weight: 500;
+    padding: 0.5rem 1.2rem;
+}
+
+.btn-outline-secondary {
+    border-radius: 8px;
+    font-weight: 500;
+    padding: 0.5rem 1.2rem;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+/* ====== Mensaje vacío ====== */
+.text-muted {
+    font-style: italic;
+}
+
+/* ====== Paginación ====== */
+.pagination {
+    justify-content: center;
+}
+
+.page-item .page-link {
+    border-radius: 6px;
+    margin: 0 2px;
+    color: #0d6efd;
+}
+
+.page-item.active .page-link {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}

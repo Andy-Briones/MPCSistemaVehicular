@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class mpcscontrol extends Model
 {
     //
+    protected $table = 'mpcscontrols';
     public function vehiculo()
     {
-        return $this->belongsTo(mpcsvehiculo::class);
+        return $this->belongsTo(mpcsvehiculo::class, 'mpcsvehiculo_id', 'id');
     }
 }
