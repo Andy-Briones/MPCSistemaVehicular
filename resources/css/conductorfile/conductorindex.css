@@ -1,0 +1,176 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+/* === Estilo general con temática de conducción y flota === */
+body {
+    background: linear-gradient(135deg, #141e30, #243b55);
+    color: #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor general */
+.container {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 25px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Título */
+h3 {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #f5f5f5;
+    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15);
+}
+
+/* Botones */
+.btn-primary {
+    background: linear-gradient(90deg, #1e90ff, #00bcd4);
+    border: none;
+    font-weight: 600;
+    transition: 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 188, 212, 0.3);
+}
+.btn-primary:hover {
+    background: linear-gradient(90deg, #00bcd4, #1e90ff);
+    transform: scale(1.05);
+}
+
+.btn-outline-secondary {
+    color: #ccc;
+    border-color: #555;
+    transition: 0.3s ease;
+}
+.btn-outline-secondary:hover {
+    background: #555;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Card */
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Tabla */
+.table {
+    color: #f5f5f5;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.table-dark {
+    background: linear-gradient(90deg, #111, #333);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(30, 144, 255, 0.25);
+    transition: background-color 0.3s ease;
+}
+
+/* Celdas */
+.table td, .table th {
+    vertical-align: middle;
+    padding: 0.75rem;
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Acciones */
+.btn-warning {
+    background: linear-gradient(90deg, #ffcc33, #ffb347);
+    border: none;
+    font-weight: 500;
+    color: #222;
+    transition: 0.3s ease;
+}
+.btn-warning:hover {
+    background: linear-gradient(90deg, #ffb347, #ffcc33);
+    transform: scale(1.05);
+}
+
+.btn-danger {
+    background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    border: none;
+    transition: 0.3s ease;
+}
+.btn-danger:hover {
+    background: linear-gradient(90deg, #ff4b2b, #ff416c);
+    transform: scale(1.05);
+}
+
+/* Texto vacío */
+.text-muted {
+    color: #aaa !important;
+    font-style: italic;
+}
+
+/* Paginación */
+.pagination {
+    justify-content: center;
+    margin-top: 20px;
+}
+.page-link {
+    background-color: #1a1a1a;
+    color: #f5f5f5;
+    border: 1px solid #333;
+}
+.page-link:hover {
+    background-color: #00bcd4;
+    color: #fff;
+    border-color: #00bcd4;
+}
+.page-item.active .page-link {
+    background-color: #00bcd4;
+    border-color: #00bcd4;
+}
+
+/* Animación sutil */
+.card, .btn, table {
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Icono título */
+h3::before {
+    content: "🚗 ";
+}
+
+/* Hover glow tipo dashboard */
+.table td:hover {
+    background-color: rgba(0, 188, 212, 0.2);
+    transition: 0.2s ease-in-out;
+}

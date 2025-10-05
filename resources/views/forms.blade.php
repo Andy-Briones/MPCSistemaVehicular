@@ -187,7 +187,6 @@
                 <input type="text" name="potencia" id="potencia" class="form-control"
                     value="{{ isset($vehiculo->potencia) ? $vehiculo->potencia : '' }}">
             </div>
-            //
             <div class="col-md-6">
                 <label for="formrod" class="form-label"> Form. Rod.</label>
                 <input type="text" name="formrod" id="formrod" class="form-control"
@@ -208,7 +207,6 @@
                 <input type="date" name="añoModelo" id="añoModelo" class="form-control"
                     value="{{ isset($vehiculo->añoModelo) ? $vehiculo->añoModelo : '' }}">
             </div>
-            //
             <div class="col-md-6">
                 <label for="version" class="form-label"> Version</label>
                 <input type="text" name="version" id="version" class="form-control"
@@ -230,7 +228,7 @@
                     value="{{ isset($vehiculo->condicion) ? $vehiculo->condicion : '' }}">
             </div>
             <div class="col-md-6">
-                <label for="mpcscaracteristica_id" class="form-label"> Categoria</label>
+                <label for="mpcscaracteristica_id" class="form-label"> Característica</label>
                 <select name="mpcscaracteristica_id" id="mpcscaracteristica_id" class="form-select">
                     @foreach($caracteristica as $caracteristicas)
                         <option value="{{ $caracteristicas->id }}" {{ isset($vehiculo->mpcscaracteristica_id) && $vehiculo->mpcscaracteristica_id == $caracteristicas->id ? 'selected' : '' }}>

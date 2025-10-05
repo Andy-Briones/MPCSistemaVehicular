@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    @vite(['resources/css/controlfile/controlindex.css', 'resources/js/app.js'])
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-4">
@@ -34,7 +36,7 @@
                         <th>Revisión Inicial</th>
                         <th>Revisión Final</th>
                         <th>Tarjeta</th>
-                        <th>Lugar</th>
+                        <th>Lugar de Destino</th>
                         <th>Conductor</th>
                         <th>Acciones</th>
                     </tr>

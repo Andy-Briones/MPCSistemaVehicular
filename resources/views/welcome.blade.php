@@ -50,7 +50,7 @@
                 <a href="{{ url('/caracteristicas')}}" class="btn btn-warning w-100 py-3 shadow">⚙️ Características</a>
             </div>
             <div class="col-md-4">
-                <a href="{{ url('/controles/create')}}" class="btn btn-warning w-100 py-3 shadow">⚙️ Revisión</a>
+                <a href="{{ url('/controles')}}" class="btn btn-warning w-100 py-3 shadow">⚙️ Revisión</a>
             </div>
         </div>
     </div>

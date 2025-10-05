@@ -1,0 +1,150 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+/* ======== TARJETA PRINCIPAL ======== */
+.card {
+    border-radius: 15px;
+    background: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ======== ENCABEZADO ======== */
+.card-header {
+    background: linear-gradient(90deg, #0069d9, #004085);
+    border-bottom: 4px solid #002b59;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-header h4 {
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.card-header::before {
+    content: "👨‍✈️";
+    font-size: 1.4rem;
+    margin-right: 8px;
+}
+
+/* ======== CAMPOS DEL FORMULARIO ======== */
+.form-label {
+    font-weight: 600;
+    color: #343a40;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.form-control {
+    border: 2px solid #dee2e6;
+    border-radius: 10px;
+    padding: 10px 12px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #0069d9;
+    box-shadow: 0 0 8px rgba(0, 105, 217, 0.3);
+    outline: none;
+}
+
+/* ======== ÍCONOS SUGERIDOS EN LABELS ======== */
+label[for="nombre"]::before {
+    content: "🧍‍♂️";
+}
+label[for="licencia"]::before {
+    content: "🎫";
+}
+label[for="telefono"]::before {
+    content: "📞";
+}
+label[for="categoriaLicencia"]::before {
+    content: "🚘";
+}
+label[for="area"]::before {
+    content: "🏢";
+}
+
+/* ======== BOTÓN GUARDAR / ACTUALIZAR ======== */
+.btn-primary {
+    background: linear-gradient(90deg, #0056b3, #007bff);
+    border: none;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, #004085, #0056b3);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    transform: scale(1.03);
+}
+
+/* ======== ANIMACIÓN DE APARICIÓN ======== */
+.card-body {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ======== DETALLES DE TEMA (Transporte / Vial) ======== */
+body {
+    background: linear-gradient(135deg, #e3eaf2, #d7dee5);
+    background-attachment: fixed;
+}
+
+/* Simula líneas de carretera en el fondo */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        #ffc107 0,
+        #ffc107 20px,
+        transparent 20px,
+        transparent 40px
+    );
+    opacity: 0.2;
+    z-index: -1;
+}
+
+/* Bordes suaves en inputs */
+.form-control:hover {
+    border-color: #80bdff;
+}
+
+/* Espaciado */
+.row.g-3 {
+    margin-top: 10px;
+}
