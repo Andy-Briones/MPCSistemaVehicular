@@ -17,6 +17,7 @@
     </div>
     <form action="{{ route('controles.index') }}" method="GET" class="mb-3 d-flex">
         <input type="text" name="search" class="form-control me-2" placeholder="Buscar por placa" value="{{ request('search') }}">
+        <a href="{{ url('/')}}" class="btn btn-outline-secondary">⬅️ Regresar</a>
         <button type="submit" class="btn btn-primary">🔍 Buscar</button>
     </form>
 
