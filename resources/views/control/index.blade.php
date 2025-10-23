@@ -56,6 +56,8 @@
                             <td>{{ $ctrl->vehiculo->conductor->nombre}}</td>
                             <td>
                                 <a href="{{ route('controles.edit', $ctrl->id) }}" class="btn btn-sm btn-warning">✏️</a>
+                                <a href="{{ route('controles.preview', $ctrl->id) }}" class="btn btn-sm btn-info">Vista previa</a>
+                                <a href="{{ route('controles.descargarword', $ctrl->id) }}" class="btn btn-sm btn-success">Descargar</a>
                                 {{--  <form action="{{ route('control.destroy', $ctrl->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
