@@ -1,11 +1,18 @@
 <?php
 
 use App\Http\Controllers\ControlController;
+use App\Http\Controllers\VehiculoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+// ruta para ver vehículos eliminados 
+Route::get('/vehiculos/eliminado', [VehiculoController::class, 'vistaEliminados'])->name('vehiculos.eliminado');
+Route::put('/vehiculos/{id}/eliminar', [VehiculoController::class, 'eliminados'])->name('vehiculos.eliminar');
+Route::put('/vehiculos/restaurar/{id}', [VehiculoController::class, 'restaurar'])->name('vehiculos.restaurar');
+
 
 Route::resource('vehiculos', 'App\Http\Controllers\VehiculoController');
 Route::resource('conductores', 'App\Http\Controllers\ConductorController');

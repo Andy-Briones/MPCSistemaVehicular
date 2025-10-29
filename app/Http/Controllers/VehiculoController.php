@@ -5,20 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\mpcscaracteristica;
 use App\Models\mpcsconductor;
 use App\Models\mpcsvehiculo;
+use Faker\Guesser\Name;
 use Illuminate\Http\Request;
 
 class VehiculoController extends Controller
 {
-    //
+    //Mostrar vehiculos que estan activos
     public function index()
     {
-        $vehiculo['mpcsvehiculos'] = mpcsvehiculo::paginate(5);
+        $vehiculo['mpcsvehiculos'] = mpcsvehiculo::where('Estado','activo')->paginate(5);
         return view('vehiculo.index', $vehiculo);
     }
     public function create()
     {
         $caracteristica = mpcscaracteristica::all();   // todas las categorías
-        $conductor = mpcsconductor::all();   // todos los proveedores
+        $conductor = mpcsconductor::all();   // todos los conductores
 
         return view('vehiculo.create', [
             'Modo' => 'crearV',
@@ -30,7 +31,7 @@ class VehiculoController extends Controller
     {
         $vehiculo = request()->except('_token');
         mpcsvehiculo::insert($vehiculo);
-        return redirect('vehiculos');//->with('mensaje', 'Categoría agregada con éxito');
+        return redirect('vehiculos');
     }
     public function show()
     {
@@ -53,10 +54,35 @@ class VehiculoController extends Controller
     {
         $vehiculo = request()->except(['_token', '_method']);
         mpcsvehiculo::where('id', '=', $id)->update($vehiculo);
-        return redirect()->route('vehiculo.index');
+        return redirect()->route('vehiculos');
     }
     public function destroy($id)
     {
-        
+
+    }
+    // Mostrar los vehículos inactivos
+    public function vistaEliminados()
+    {
+        $vehiculo['mpcsvehiculos'] = mpcsvehiculo::where('Estado', 'inactivo')->paginate(5);
+        return view('vehiculo.eliminado', $vehiculo);
+    }
+    // Mover vehículo a inactivos
+    public function eliminados($id)
+    {
+        $vehiculo = mpcsvehiculo::findOrFail($id);
+        $vehiculo->Estado = 'inactivo';
+        $vehiculo->save();
+
+        return redirect()->route('vehiculos.index')->with('mensaje', 'Vehículo movido a eliminados correctamente.');
+    }
+    //Restaurar vehiculo inactivo a activo
+    public function restaurar($id)
+    {
+        $vehiculo = mpcsvehiculo::findOrFail($id);
+        $vehiculo->Estado = 'activo';
+        $vehiculo->save();
+
+        return redirect()->route('vehiculos.eliminado')->with('mensaje', 'Vehículo restaurado correctamente.');
     }
 }
+

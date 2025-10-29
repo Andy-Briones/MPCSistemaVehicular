@@ -228,6 +228,11 @@
                     value="{{ isset($vehiculo->condicion) ? $vehiculo->condicion : '' }}">
             </div>
             <div class="col-md-6">
+                <label for="Estado" class="form-label">Estado</label>
+                <input readonly type="text" name="Estado" id="Estado" class="form-control" 
+                    value="{{ $vehiculo->Estado ?? 'activo' }}">
+            </div>
+            <div class="col-md-6">
                 <label for="mpcscaracteristica_id" class="form-label"> Característica</label>
                 <select name="mpcscaracteristica_id" id="mpcscaracteristica_id" class="form-select">
                     @foreach($caracteristica as $caracteristicas)

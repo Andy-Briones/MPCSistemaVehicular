@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('placaActual');
             $table->string('placaAnterior');
             $table->string('condicion');
+            $table->string('Estado')->default('activo');
             $table->foreignId('mpcscaracteristica_id')->constrained('mpcscaracteristicas')->onDelete('cascade');
             $table->foreignId('mpcsconductor_id')->constrained('mpcsconductors')->onDelete('cascade');
             $table->timestamps();

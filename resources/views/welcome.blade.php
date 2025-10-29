@@ -52,6 +52,9 @@
             <div class="col-md-4">
                 <a href="{{ url('/controles')}}" class="btn btn-warning w-100 py-3 shadow">⚙️ Revisión</a>
             </div>
+            <div class="col-md-4">
+                <a href="{{ route('vehiculos.eliminado') }}" class="btn btn-info w-100 py-3 shadow">🗑️ Eliminados</a>
+            </div>
         </div>
     </div>
     <!-- Bootstrap JS -->
