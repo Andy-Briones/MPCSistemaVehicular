@@ -13,8 +13,7 @@
         @include('forms', ['Modo' => 'editarConductor'])
         <div class="text-center mt-4">
             <button type="submit" class="btn btn-primary me-2">💾 Guardar</button>
-            <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">⬅️ Cancelar</a>
-            <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">⬅️ Cancelar</a>
+            <a href="{{ url('/') }}" class="btn btn-outline-secondary">⬅️ Regresar</a>
         </div>
     </form>
 </body>

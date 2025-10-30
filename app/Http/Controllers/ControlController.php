@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\mpcscontrol;
 use App\Models\mpcsvehiculo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\PhpWord;
@@ -21,15 +22,45 @@ class ControlController extends Controller
         $query = MpcsControl::with(['vehiculo.conductor']);
 
         if ($request->filled('search')) {
-        $search = $request->input('search');
-        $query->whereHas('vehiculo', function($q) use ($search) {
-            $q->where('placaActual', 'like', "%{$search}%");
-        });
-    }
+            $search = $request->input('search');
+            $query->whereHas('vehiculo', function($q) use ($search) {
+                $q->where('placaActual', 'like', "%{$search}%");
+            });
+        }
 
-    $mpcscontrols = $query->paginate(10);
+        $mpcscontrols = $query->paginate(10);
 
-    return view('control.index', compact('mpcscontrols'));
+        //Alertas
+        foreach($mpcscontrols as $control)
+        {
+            $hoy = Carbon::now();
+
+            //Alerta de 10 dias con antelacion
+            $avisoSoat = $hoy->diffInDays(Carbon::parse($control->soatFinal), false);
+            $avisoRevision = $hoy->diffInDays(Carbon::parse($control->revisionTecFin), false);
+
+            //Revisamos si faln 10 días
+            if($avisoSoat <= 10 && $avisoSoat >= 0)
+            {
+                $alerta[]=[
+                    'tipo' => 'SOAT',
+                    'vehiculo' => $control->vehiculo->placaActual ?? 'Desconocido',
+                    'Vence' => $control->soatFinal,
+                    'dias' => $avisoSoat,
+                ];
+            }
+            if($avisoRevision <= 10 && $avisoRevision >= 0)
+            {
+                $alerta[] = [
+                    'tipo' => 'Revisión Técnica',
+                    'vehiculo' => $control->vehiculo->placaActual ?? 'Desconocido',
+                    'Vence' => $control->revisionTecFin,
+                    'dias' => $avisoRevision,
+                ];
+            }
+        }
+
+        return view('control.index', compact('mpcscontrols'));
     }
     public function create()
     {
@@ -65,7 +96,7 @@ class ControlController extends Controller
     {
         $control = request()->except(['_token', '_method']);
         mpcscontrol::where('id', '=', $id)->update($control);
-        return redirect()->route('control.index');
+        return redirect()->route('controles.index');
     }
     public function destroy($id)
     {

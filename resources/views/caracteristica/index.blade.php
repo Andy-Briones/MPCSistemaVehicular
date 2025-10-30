@@ -15,7 +15,7 @@
         <a href="{{ url('caracteristicas/create') }}" class="btn btn-primary">
             ➕ Agregar Característica
         </a>
-        <a href="{{ url("/") }}" class="btn btn-outline-secondary">⬅️ Cancelar</a>
+        <a href="{{ url("/") }}" class="btn btn-outline-secondary">⬅️ Regresar</a>
     </div>
 
     <div class="card shadow border-0">

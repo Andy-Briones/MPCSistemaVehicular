@@ -8,6 +8,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    {{-- Alertas --}}
+    @if (!empty($alerta))
+        <div class="alert alert-warning">
+            <h5>⚠️ Avisos de Vencimiento Próximo</h5>
+            <ul class="mb-0">
+                @foreach ($alerta as $alertass)
+                    <li class="{{ isset($alertass['vencido']) ? 'text-danger fw-bold' : '' }}">
+                        <strong>{{ $alertass['tipo'] }}</strong> del vehículo 
+                        <b>{{ $alertass['vehiculo'] }}</b> vence el 
+                        <b>{{ \Carbon\Carbon::parse($alertass['vence'])->format('d/m/Y') }}</b> 
+                        ({{ $alertass['dias'] >= 0 ? 'faltan '.$alertass['dias'].' días' : 'VENCIDO hace '.abs($alertass['dias']).' días' }})
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+
     <div class="container mt-4">
 
     {{-- Título --}}
