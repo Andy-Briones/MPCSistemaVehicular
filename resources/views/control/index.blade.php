@@ -17,8 +17,16 @@
                     <li class="{{ isset($alertass['vencido']) ? 'text-danger fw-bold' : '' }}">
                         <strong>{{ $alertass['tipo'] }}</strong> del vehículo 
                         <b>{{ $alertass['vehiculo'] }}</b> vence el 
-                        <b>{{ \Carbon\Carbon::parse($alertass['vence'])->format('d/m/Y') }}</b> 
-                        ({{ $alertass['dias'] >= 0 ? 'faltan '.$alertass['dias'].' días' : 'VENCIDO hace '.abs($alertass['dias']).' días' }})
+                        <b>{{ \Carbon\Carbon::parse($alertass['vence'])->format('d/m/Y') }}</b>
+                        <span class="badge {{ $alertass['dias'] > 5 ? 'bg-warning text-dark' : ($alertass['dias'] >= 0 ? 'bg-danger text-white' : 'bg-dark text-white') }}">
+                            @if($alertass['dias'] > 0)
+                                ⏰ Faltan {{ (int)$alertass['dias'] }} días
+                            @elseif($alertass['dias'] == 0)
+                                ⚠️ Vence HOY
+                            @else
+                                ❌ Vencido hace {{ (int)abs($alertass['dias']) }} días
+                            @endif
+                        </span>
                     </li>
                 @endforeach
             </ul>

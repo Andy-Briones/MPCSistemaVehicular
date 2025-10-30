@@ -16,6 +16,9 @@
     <div class="container mt-4 text-center">
         <h2 class="fw-bold text-primary">🚗 Sistema de Registro Vehicular</h2>
     </div>
+    <div class="logo-container">
+        <img src="{{ asset('Imgs/logoCaja.png') }}" alt="Logo Municipalidad" class="logo-image">
+    </div>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-3">

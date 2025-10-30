@@ -31,13 +31,14 @@ class ControlController extends Controller
         $mpcscontrols = $query->paginate(10);
 
         //Alertas
+        $alerta = [];
         foreach($mpcscontrols as $control)
         {
             $hoy = Carbon::now();
 
             //Alerta de 10 dias con antelacion
-            $avisoSoat = $hoy->diffInDays(Carbon::parse($control->soatFinal), false);
-            $avisoRevision = $hoy->diffInDays(Carbon::parse($control->revisionTecFin), false);
+            $avisoSoat = (int)$hoy->diffInDays(Carbon::parse($control->soatFinal), false);
+            $avisoRevision = (int)$hoy->diffInDays(Carbon::parse($control->revisionTecFin), false);
 
             //Revisamos si faln 10 días
             if($avisoSoat <= 10 && $avisoSoat >= 0)
@@ -45,7 +46,7 @@ class ControlController extends Controller
                 $alerta[]=[
                     'tipo' => 'SOAT',
                     'vehiculo' => $control->vehiculo->placaActual ?? 'Desconocido',
-                    'Vence' => $control->soatFinal,
+                    'vence' => $control->soatFinal,
                     'dias' => $avisoSoat,
                 ];
             }
@@ -54,13 +55,13 @@ class ControlController extends Controller
                 $alerta[] = [
                     'tipo' => 'Revisión Técnica',
                     'vehiculo' => $control->vehiculo->placaActual ?? 'Desconocido',
-                    'Vence' => $control->revisionTecFin,
+                    'vence' => $control->revisionTecFin,
                     'dias' => $avisoRevision,
                 ];
             }
         }
 
-        return view('control.index', compact('mpcscontrols'));
+        return view('control.index', compact('mpcscontrols', 'alerta'));
     }
     public function create()
     {
@@ -309,8 +310,6 @@ class ControlController extends Controller
             $tableCaract->addCell(3000)->addText("$label: " . ($value ?? '-'));
         }
     }
-
-    $section->addTextBreak(2);
 
     // ===== CONDUCTOR =====
     $section->addText("Conductor: " . ($conductor->nombre ?? '-') . " " . ($conductor->apellido ?? '-'), ['bold' => true]);

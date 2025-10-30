@@ -24,6 +24,34 @@ h2 {
     font-size: 2rem;
 }
 
+/* Estilos para el contenedor del logo */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* Estilos para la imagen del logo */
+.logo-image {
+    max-width: 250px;
+    max-height: 250px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 10px 10px rgba(67, 180, 211, 0.1));
+}
+
+.logo-image:hover {
+    transform: scale(1.02);
+}
+
 /* Navbar estilo coche */
 .navbar {
     background: linear-gradient(90deg, #000000, #1a1a1a, #000000);
