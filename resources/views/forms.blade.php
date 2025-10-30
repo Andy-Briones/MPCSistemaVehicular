@@ -12,79 +12,79 @@
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="text" name="nombre" id="nombre" class="form-control"
                     placeholder="Ingrese el nombre"
-                    value="{{ old('nombre') }}">
+                    value="{{ old('nombre',isset($caracteristica->nombre) ? $caracteristica->nombre : '') }}">
             </div>
             <div class="col-md-6">
                 <label for="asientos" class="form-label">N° Asientos</label>
                 <input type="number" name="asientos" id="asientos" class="form-control"
                     placeholder="Ej: 4"
-                    value="{{ old('asientos') }}">
+                    value="{{ old('asientos', isset($caracteristica->asientos) ? $caracteristica->asientos : '') }}">
             </div>
             <div class="col-md-6">
                 <label for="pasajeros" class="form-label">Pasajeros</label>
                 <input type="number" name="pasajeros" id="pasajeros" class="form-control"
                     placeholder="Ej: 5"
-                    value="{{ old('pasajeros') }}">
+                    value="{{ old('pasajeros', isset($caracteristica->pasajeros) ? $caracteristica->pasajeros : '') }}">
             </div>
             <div class="col-md-6">
                 <label for="ruedas" class="form-label">Ruedas</label>
                 <input type="number" name="ruedas" id="ruedas" class="form-control"
                     placeholder="Ej: 4"
-                    value="{{ old('ruedas') }}">
+                    value="{{ old('ruedas',isset($caracteristica->ruedas) ? $caracteristica->ruedas : '') }}">
             </div>
             <div class="col-md-6">
                 <label for="ejes" class="form-label">Ejes</label>
                 <input type="number" name="ejes" id="ejes" class="form-control"
                     placeholder="Ej: 2"
-                    value="{{ old('ejes') }}">
+                    value="{{ old('ejes', isset($caracteristica->ejes) ? $caracteristica->ejes : '') }}">
             </div>
             <div class="col-md-6">
                 <label for="cilindros" class="form-label">Cilindros</label>
                 <input type="number" name="cilindros" id="cilindros" class="form-control"
                     placeholder="Ej: 6"
-                    value="{{ old('cilindros') }}">
+                    value="{{ old('cilindros',isset($caracteristica->cilindros) ? $caracteristica->cilindros : '') }}">
             </div>
             <div class="col-md-6">
                 <label for="longitud" class="form-label">Longitud (m)</label>
                 <input type="number" step="0.01" name="longitud" id="longitud" class="form-control"
                     placeholder="Ej: 4.50"
-                    value="{{ old('longitud') }}">
+                    value="{{ old('longitud', isset($caracteristica->longitud) ? $caracteristica->longitud : '') }}">
             </div>
             <div class="col-md-6">
                 <label for="altura" class="form-label">Altura (m)</label>
                 <input type="number" step="0.01" name="altura" id="altura" class="form-control"
                     placeholder="Ej: 1.80"
-                    value="{{ old('altura')}}">
+                    value="{{ old('altura',isset($caracteristica->altura) ? $caracteristica->altura : '')}}">
             </div>
             <div class="col-md-6">
                 <label for="ancho" class="form-label">Ancho (m)</label>
                 <input type="number" step="0.01" name="ancho" id="ancho" class="form-control"
                     placeholder="Ej: 1.70"
-                    value="{{ old('ancho') }}">
+                    value="{{ old('ancho',isset($caracteristica->ancho) ? $caracteristica->ancho : '') }}">
             </div>
             <div class="col-md-6">
                 <label for="cilindrada" class="form-label">Cilindrada (L)</label>
                 <input type="number" step="0.001" name="cilindrada" id="cilindrada" class="form-control"
                     placeholder="Ej: 2.000"
-                    value="{{ old('cilindrada') }}">
+                    value="{{ old('cilindrada',isset($caracteristica->cilindrada) ? $caracteristica->cilindrada : '') }}">
             </div>
             <div class="col-md-6">
                 <label for="pesoBruto" class="form-label">Peso Bruto (kg)</label>
                 <input type="number" step="0.001" name="pesoBruto" id="pesoBruto" class="form-control"
                     placeholder="Ej: 3000"
-                    value="{{ old('pesoBruto') }}">
+                    value="{{ old('pesoBruto',isset($caracteristica->pesoBruto) ? $caracteristica->pesoBruto : '') }}">
             </div>
             <div class="col-md-6">
                 <label for="pesoNeto" class="form-label">Peso Neto (kg)</label>
                 <input type="number" step="0.001" name="pesoNeto" id="pesoNeto" class="form-control"
                     placeholder="Ej: 1500"
-                    value="{{ old('pesoNeto') }}">
+                    value="{{ old('pesoNeto',isset($caracteristica->pesoNeto) ? $caracteristica->pesoNeto : '') }}">
             </div>
             <div class="col-md-6">
                 <label for="cargaUtil" class="form-label">Carga Útil (kg)</label>
                 <input type="number" step="0.001" name="cargaUtil" id="cargaUtil" class="form-control"
                     placeholder="Ej: 1200"
-                    value="{{ old('cargaUtil') }}">
+                    value="{{ old('cargaUtil',isset($caracteristica->cargaUtil) ? $caracteristica->cargaUtil : '') }}">
             </div>
         </div>
         {{--  Botones
