@@ -12,6 +12,22 @@ class mpcscaracteristica extends Model
 
     protected $table = 'mpcscaracteristicas';
 
+    protected $fillable = [
+        'nombre',
+        'asientos',
+        'pasajeros',
+        'ruedas',
+        'ejes',
+        'cilindors',
+        'longitud',
+        'altura',
+        'ancho',
+        'cilindrada',
+        'pesoBruto',
+        'pesoNeto',
+        'cargaUtil',
+    ];
+
     public function vehiculo()
     {
         return $this->hasMany(mpcsvehiculo::class);

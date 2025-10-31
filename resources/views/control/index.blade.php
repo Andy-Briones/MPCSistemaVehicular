@@ -59,9 +59,9 @@
                         <th>ID</th>
                         <th>Vehículo</th>
                         <th>Soat Inicial</th>
-                        <th>Soat Final</th>
+                        <th>Soat Vencimiento</th>
                         <th>Revisión Inicial</th>
-                        <th>Revisión Final</th>
+                        <th>Revisión Vencimiento</th>
                         <th>Tarjeta</th>
                         <th>Lugar de Destino</th>
                         <th>Conductor</th>

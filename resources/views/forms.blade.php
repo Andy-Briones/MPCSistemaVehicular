@@ -268,7 +268,7 @@
     <div class="card-body">
         <div class="row g-3">
             <div class="col-md-6">
-                <label for="soatInicial" class="form-label">Fecha de Soat</label>
+                <label for="soatInicial" class="form-label">Fecha Inicial de Soat</label>
                 <input type="date" name="soatInicial" id="soatInicial" class="form-control"
                     value="{{ old('soatInicial', $control->soatInicial ?? '') }}">
             </div>
@@ -278,7 +278,7 @@
                     value="{{ old('soatFinal', $control->soatFinal ?? '') }}">
             </div>
             <div class="col-md-6">
-                <label for="revisionTecIn" class="form-label">Fecha de la Revisión Técnica</label>
+                <label for="revisionTecIn" class="form-label">Fecha Inicial de la Revisión Técnica</label>
                 <input type="date" name="revisionTecIn" id="revisionTecIn" class="form-control"
                     value="{{ old('revisionTecIn', $control->revisionTecIn ?? '') }}">
             </div>

@@ -19,7 +19,7 @@
                 <a href="{{ route('controles.descargarword', $control->id) }}" class="btn btn-primary">
                     Descargar Tarjeta Vehicular
                 </a>
-                <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">⬅️ Cancelar</a>
+                <a href="{{ url('/controles') }}" class="btn btn-outline-secondary">⬅️ Regresar</a>
             </div>
         </form>
     </div>
