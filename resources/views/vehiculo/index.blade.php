@@ -13,7 +13,7 @@
         <h3 class="mb-0">🚗 Lista de Vehículos</h3>
         <a href="{{ url('vehiculos/create') }}" class="btn btn-primary">➕ Nuevo Vehículo</a>
         {{--  <a href="{{ route('vehiculos.eliminado') }}" class="btn btn-secondary">🗑️ Ver Eliminados</a>  --}}
-        <a href="{{ url("/") }}" class="btn btn-outline-secondary">⬅️ Regresars</a>
+        <a href="{{ url("/") }}" class="btn btn-outline-secondary">⬅️ Regresar</a>
     </div>
 
     <div class="card shadow border-0">

@@ -15,7 +15,7 @@
         <a href="{{ url('conductores/create') }}" class="btn btn-primary">
             ➕ Agregar Conductor
         </a>
-        <a href="{{ url("/") }}" class="btn btn-outline-secondary">⬅️ Cancelar</a>
+        <a href="{{ url("/") }}" class="btn btn-outline-secondary">⬅️ Regresar</a>
     </div>
 
     <div class="card shadow border-0">
