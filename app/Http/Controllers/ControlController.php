@@ -74,10 +74,22 @@ class ControlController extends Controller
     }
     public function store(Request $request)
     {
-        $control = request()->except('_token');
-        mpcscontrol::insert($control);
-        return redirect('/');//->with('mensaje', 'Vehiculo agregado con éxito');
+        $data = $request->except('_token');
+
+        // GUARDAR IMAGEN COMO BASE64 EN LA BD
+        if ($request->hasFile('imagenSoat')) {
+            $file = $request->file('imagenSoat');
+            $imageData = file_get_contents($file->getRealPath());
+            $base64 = 'data:' . $file->getMimeType() . ';base64,' . base64_encode($imageData);
+            $data['imagenSoat'] = $base64;
+        }
+
+        mpcscontrol::create($data);
+
+        return redirect('/controles')->with('mensaje', 'Control agregado con éxito');
     }
+
+
     public function show()
     {
         
@@ -95,9 +107,21 @@ class ControlController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $control = request()->except(['_token', '_method']);
-        mpcscontrol::where('id', '=', $id)->update($control);
-        return redirect()->route('controles.index');
+        $control = mpcscontrol::findOrFail($id);
+        
+        $data = $request->except(['_token', '_method']);
+
+        // ACTUALIZAR IMAGEN COMO BASE64 (si se sube una nueva)
+        if ($request->hasFile('imagenSoat')) {
+            $file = $request->file('imagenSoat');
+            $imageData = file_get_contents($file->getRealPath());
+            $base64 = 'data:' . $file->getMimeType() . ';base64,' . base64_encode($imageData);
+            $data['imagenSoat'] = $base64;
+        }
+
+        $control->update($data);
+
+        return redirect()->route('controles.index')->with('mensaje', 'Control actualizado');
     }
     public function destroy($id)
     {

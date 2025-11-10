@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('revisionTecFin');
             $table->string('tarjetaP');
             $table->string('lugarD');
+            $table->text('imagenSoat');
             $table->foreignId('mpcsvehiculo_id')->constrained('mpcsvehiculos')->onDelete('cascade');
             $table->timestamps();
         });

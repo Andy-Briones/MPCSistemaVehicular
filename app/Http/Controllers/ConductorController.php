@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\mpcsconductor;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ConductorController extends Controller
@@ -10,8 +11,28 @@ class ConductorController extends Controller
     //
     public function index()
     {
-        $conductor['mpcsconductors'] = mpcsconductor::paginate(5);
-        return view('conductor.index', $conductor);
+        $mpcsconductors  = mpcsconductor::paginate(5);
+        //Alertas
+        $alerta = [];
+        foreach($mpcsconductors  as $conducto)
+        {
+            $hoy = Carbon::now();
+
+            //Alerta de 10 dias con antelacion
+            $avisoLice = (int)$hoy->diffInDays(Carbon::parse($conducto->vencimientoLice), false);
+
+            //Revisamos si faln 10 días
+            if($avisoLice <= 10 && $avisoLice >= 0)
+            {
+                $alerta[]=[
+                    'Licencia' => 'Licencia',
+                    'conductor' => $conducto->nombre ?? 'Desconocido',
+                    'vence' => $conducto->vencimientoLice,
+                    'dias' => $avisoLice,
+                ];
+            }
+        }
+        return view('conductor.index', compact('mpcsconductors', 'alerta'));
     }
     
     public function create()
@@ -37,7 +58,7 @@ class ConductorController extends Controller
     {
         $conductor = request()->except(['_token', '_method']);
         mpcsconductor::where('id', '=', $id)->update($conductor);
-        return redirect()->route('conductor.index');
+        return redirect('conductores');
     }
     public function destroy($id)
     {

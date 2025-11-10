@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('mpcsconductors', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->string('dni');
             $table->string('licencia');
+            $table->date('vencimientoLice');
             $table->string('telefono');
             $table->string('categoriaLicencia');
             $table->string('area');

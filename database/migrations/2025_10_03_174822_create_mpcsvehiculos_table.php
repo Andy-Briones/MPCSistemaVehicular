@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('mpcsvehiculos', function (Blueprint $table) {
             $table->id();
             $table->string('categoria');
+            $table->string('codPatrimonial');
             $table->string('marca');
             $table->string('modelo');
             $table->string('color');
@@ -30,6 +31,7 @@ return new class extends Migration
             $table->string('placaAnterior');
             $table->string('condicion');
             $table->string('Estado')->default('activo');
+            $table->string('observaciones');
             $table->foreignId('mpcscaracteristica_id')->constrained('mpcscaracteristicas')->onDelete('cascade');
             $table->foreignId('mpcsconductor_id')->constrained('mpcsconductors')->onDelete('cascade');
             $table->timestamps();

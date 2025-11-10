@@ -12,6 +12,7 @@
     <form action="{{route('conductores.update', $conductor->id)}}" method="POST" enctype="multipart/form-data"
         class="p-4 bg-white shadow rounded">
         @csrf
+        @method('PUT')
         @include('forms', ['Modo' => 'editarConductor'])
         <div class="text-center mt-4">
             <button type="submit" class="btn btn-primary me-2">💾 Guardar</button>

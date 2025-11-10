@@ -8,6 +8,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+{{-- Alertas --}}
+    @if (!empty($alerta))
+        <div class="alert alert-warning">
+            <h5>⚠️ Avisos de Vencimiento Próximo</h5>
+            <ul class="mb-0">
+                @foreach ($alerta as $alertass)
+                    <li class="{{ isset($alertass['vencido']) ? 'text-danger fw-bold' : '' }}">
+                        <strong>{{ $alertass['Licencia'] }}</strong> Licencia
+                        <b>{{ $alertass['conductor'] }}</b> de Conductor
+                        <b>{{ \Carbon\Carbon::parse($alertass['vence'])->format('d/m/Y') }}</b>
+                        <span class="badge {{ $alertass['dias'] > 5 ? 'bg-warning text-dark' : ($alertass['dias'] >= 0 ? 'bg-danger text-white' : 'bg-dark text-white') }}">
+                            @if($alertass['dias'] > 0)
+                                ⏰ Faltan {{ (int)$alertass['dias'] }} días
+                            @elseif($alertass['dias'] == 0)
+                                ⚠️ Vence HOY
+                            @else
+                                ❌ Vencido hace {{ (int)abs($alertass['dias']) }} días
+                            @endif
+                        </span>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="container mt-4">
 
     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -28,6 +52,7 @@
                         <th>Licencia</th>
                         <th>Categoría</th>
                         <th>Teléfono</th>
+                        <th>FEcha de Vencimiento de Licencia</th>
                         <th>Área</th>
                         <th class="text-center">Acciones</th>
                     </tr>
@@ -40,6 +65,7 @@
                         <td>{{ $conductor->licencia }}</td>
                         <td>{{ $conductor->categoriaLicencia }}</td>
                         <td>{{ $conductor->telefono }}</td>
+                        <td>{{ $conductor->vencimientoLice }}</td>
                         <td>{{ $conductor->area }}</td>
                         <td class="text-center">
                             <a href="{{ url('conductores/'.$conductor->id.'/edit') }}" class="btn btn-sm btn-warning">

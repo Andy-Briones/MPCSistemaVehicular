@@ -23,6 +23,7 @@
                     <thead class="table-dark">
                         <tr>
                             <th>ID</th>
+                            <th>Cod. Patrimonial</th>
                             <th>Categoría</th>
                             <th>Marca</th>
                             <th>Modelo</th>
@@ -37,6 +38,7 @@
                         @forelse($mpcsvehiculos as $vehiculos)
                             <tr>
                                 <td>{{ $vehiculos->id }}</td>
+                                <td>{{ $vehiculos->codPatrimonial }}</td>
                                 <td>{{ $vehiculos->categoria }}</td>
                                 <td>{{ $vehiculos->marca }}</td>
                                 <td>{{ $vehiculos->modelo }}</td>

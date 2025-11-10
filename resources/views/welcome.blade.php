@@ -23,7 +23,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-3">
         <div class="container">
-            <a class="navbar-brand text-center" href="#">Sistema interno de control vehicular Unidad de Patrimonio</a>
+            <a class="navbar-brand text-center" href="#">Sistema de control vehicular del Area de Patrimonio</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -56,7 +56,7 @@
                 <a href="{{ url('/controles')}}" class="btn btn-warning w-100 py-3 shadow">⚙️ Revisión</a>
             </div>
             <div class="col-md-4">
-                <a href="{{ route('vehiculos.eliminado') }}" class="btn btn-info w-100 py-3 shadow">🗑️ Eliminados</a>
+                <a href="{{ route('vehiculos.eliminado') }}" class="btn btn-info w-100 py-3 shadow">🗑️ De baja</a>
             </div>
         </div>
     </div>
