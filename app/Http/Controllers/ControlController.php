@@ -21,12 +21,24 @@ class ControlController extends Controller
     {
         $query = MpcsControl::with(['vehiculo.conductor']);
 
+        //Busqueda por placa
         if ($request->filled('search')) {
             $search = $request->input('search');
             $query->whereHas('vehiculo', function($q) use ($search) {
                 $q->where('placaActual', 'like', "%{$search}%");
             });
         }
+
+        //Filtro para vencimientos
+        if ($request->filled('filtro_venc')) {
+        $filtro = $request->input('filtro_venc');
+
+        if ($filtro === 'soat') {
+            $query->orderBy('soatFinal', 'asc');  
+        } elseif ($filtro === 'revision') {
+            $query->orderBy('revisionTecFin', 'asc');
+        }
+    }
 
         $mpcscontrols = $query->paginate(10);
 
@@ -80,10 +92,17 @@ class ControlController extends Controller
         // GUARDAR IMAGEN COMO BASE64 EN LA BD
         if ($request->hasFile('imagenSoat')) {
             $file = $request->file('imagenSoat');
-            $imageData = file_get_contents($file->getRealPath());
-            $base64 = 'data:' . $file->getMimeType() . ';base64,' . base64_encode($imageData);
-            $data['imagenSoat'] = $base64;
+
+            // nombre único
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            // mover a public/imagenes
+            $file->move(public_path('Imgs'), $filename);
+
+            // guardar en la BD solo la ruta o el nombre
+            $data['imagenSoat'] = 'Imgs/' . $filename;
         }
+
 
         mpcscontrol::create($data);
 
@@ -107,19 +126,35 @@ class ControlController extends Controller
         ]);
     }
     public function update(Request $request, $id)
-    {
+    {        
         $control = mpcscontrol::findOrFail($id);
-        
+
         $data = $request->except(['_token', '_method']);
 
-        // ACTUALIZAR IMAGEN COMO BASE64 (si se sube una nueva)
+        // Si suben una nueva imagen
         if ($request->hasFile('imagenSoat')) {
+
+            // ================================
+            // 1. ELIMINAR IMAGEN ANTERIOR
+            // ================================
+            if ($control->imagenSoat && file_exists(public_path($control->imagenSoat))) {
+                unlink(public_path($control->imagenSoat));
+            }
+
+            // ================================
+            // 2. GUARDAR LA NUEVA IMAGEN
+            // ================================
             $file = $request->file('imagenSoat');
-            $imageData = file_get_contents($file->getRealPath());
-            $base64 = 'data:' . $file->getMimeType() . ';base64,' . base64_encode($imageData);
-            $data['imagenSoat'] = $base64;
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            // Guardar en public/Imgs
+            $file->move(public_path('Imgs'), $filename);
+
+            // Guardar ruta en BD
+            $data['imagenSoat'] = 'Imgs/' . $filename;
         }
 
+        // Actualizar todo
         $control->update($data);
 
         return redirect()->route('controles.index')->with('mensaje', 'Control actualizado');

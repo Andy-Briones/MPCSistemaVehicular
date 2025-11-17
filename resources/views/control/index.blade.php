@@ -45,10 +45,18 @@
             <a href="{{ route('controles.create') }}" class="btn btn-primary">➕ Agregar Revisión</a>
         </div>
         <form action="{{ route('controles.index') }}" method="GET" class="mb-3 d-flex">
-            <input type="text" name="search" class="form-control me-2" placeholder="Buscar por placa"
-                value="{{ request('search') }}">
-            <a href="{{ url('/')}}" class="btn btn-outline-secondary">⬅️ Regresar</a>
-            <button type="submit" class="btn btn-primary">🔍 Buscar</button>
+            <input type="text" name="search" class="form-control me-2"
+           placeholder="Buscar por placa"
+           value="{{ request('search') }}">
+
+    <select name="filtro_venc" class="form-select me-2">
+        <option value="">Ordenar por vencimiento...</option>
+        <option value="soat" {{ request('filtro_venc')=='soat'?'selected':'' }}>SOAT más próximo</option>
+        <option value="revision" {{ request('filtro_venc')=='revision'?'selected':'' }}>Revisión Técnica más próxima</option>
+    </select>
+
+    <a href="{{ url('/') }}" class="btn btn-outline-secondary me-2">⬅️ Regresar</a>
+    <button type="submit" class="btn btn-primary">🔍 Buscar</button>
         </form>
 
         {{-- Tabla de Controles --}}
@@ -87,7 +95,14 @@
                                 <td>{{ $ctrl->vehiculo->conductor->nombre}}</td>
                                 <td>
                                     @if ($ctrl->imagenSoat)
-                                        <img src="{{ $ctrl->imagenSoat }}" alt="SOAT" width="120" class="img-thumbnail">
+                                        <img src="{{ asset($ctrl->imagenSoat) }}" 
+                                            alt="SOAT"
+                                            width="120"
+                                            class="img-thumbnail"
+                                            style="cursor:pointer"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalImagen"
+                                            onclick="mostrarImagen('{{ asset($ctrl->imagenSoat) }}')">
                                     @else
                                         <span class="text-muted">Sin imagen</span>
                                     @endif
@@ -122,6 +137,65 @@
             </div>
         </div>
     </div>
+
+<!-- Modal Mostrar Imagen -->
+<div class="modal fade" id="modalImagen" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Vista de Imagen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body d-flex justify-content-center align-items-center">
+                <img id="imagenAmpliada" src="" 
+                     style="max-width:100%; max-height:75vh; object-fit:contain; cursor: zoom-in;"
+                     onclick="zoomImagen(this)">
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button class="btn btn-primary" onclick="imprimirImagen()">🖨️ Imprimir</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+function mostrarImagen(src) {
+    document.getElementById('imagenAmpliada').src = src;
+}
+
+// ZOOM con click
+let zoom = false;
+function zoomImagen(img) {
+    zoom = !zoom;
+    img.style.transform = zoom ? "scale(1.8)" : "scale(1)";
+    img.style.transition = "0.3s";
+}
+
+// IMPRIMIR SOLO LA IMAGEN
+function imprimirImagen() {
+    const imgSrc = document.getElementById('imagenAmpliada').src;
+
+    const ventana = window.open("", "_blank");
+    ventana.document.write(`
+        <html>
+        <head><title>Imprimir Imagen</title></head>
+        <body style="text-align:center; margin:0; padding:0;">
+            <img src="${imgSrc}" style="max-width:100%;"/>
+            <script>
+                window.onload = function() { window.print(); }
+            <\/script>
+        </body>
+        </html>
+    `);
+    ventana.document.close();
+}
+</script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
