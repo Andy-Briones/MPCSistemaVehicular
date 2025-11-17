@@ -4,10 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Característica</title>
-    @vite(['resources/css/caracteristicafiles/caracteristicaindex.css', 'resources/js/app.js'])
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* ===============================
+   FONDO GENERAL
+=============================== */
+body {
+    background: linear-gradient(135deg, #0b1b2b, #123a56);
+    font-family: 'Inter', sans-serif;
+    padding-bottom: 40px;
+}
+
+/* ===============================
+   TITULO Y HEADER
+=============================== */
+.container h3 {
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 10px;
+}
+
+/* ===============================
+   BOTÓN REGRESAR
+=============================== */
+.btn-outline-secondary {
+    border-radius: 8px;
+    padding: 10px 20px;
+    color: #fff;
+    border-color: #cfd8dc;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #cfd8dc;
+    color: #000;
+}
+
+/* ===============================
+   BOTÓN PRIMARIO (Agregar)
+=============================== */
+.btn-primary {
+    background: linear-gradient(135deg, #0066ff, #004bb7);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #004bb7, #003b94);
+}
+
+/* ===============================
+   TARJETA / CARD
+=============================== */
+.card {
+    border-radius: 15px;
+    overflow: hidden;
+    border-left: 5px solid #007bff;
+    border-right: 5px solid #00bcd4;
+}
+
+/* ===============================
+   TABLA
+=============================== */
+.table {
+    margin-bottom: 0;
+}
+
+.table thead.table-dark {
+    background: linear-gradient(135deg, #003b70, #005fa3);
+    border-bottom: 3px solid #007bff;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background: rgba(240, 248, 255, 0.85);
+}
+
+.table td, .table th {
+    vertical-align: middle;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+/* ===============================
+   BOTONES DE ACCIÓN
+=============================== */
+.btn-warning {
+    background: linear-gradient(135deg, #ffc107, #e0a800);
+    border: none;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #d9534f, #b52b27);
+    border: none;
+}
+
+/* ===============================
+   ETIQUETAS / BADGES
+=============================== */
+.badge {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    border-radius: 8px;
+}
+
+.badge.bg-danger {
+    background: #d9534f !important;
+}
+
+.badge.bg-success {
+    background: #28a745 !important;
+}
+
+.badge.bg-warning {
+    background: #ffc107 !important;
+    color: black !important;
+}
+
+/* ===============================
+   PAGINACIÓN
+=============================== */
+.pagination .page-link {
+    color: #0b1b2b;
+    border-radius: 8px;
+}
+
+.pagination .page-link:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.pagination .active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+/* ===============================
+   SOMBRAS Y EFECTOS
+=============================== */
+.card.shadow {
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25) !important;
+}
+
+    </style>
 </head>
 <body>
+@auth
+        @if (Auth::user()->role === 'trabajador')
+            {{-- Navbar ADMIN --}}
+            @include('forms', ['Modo' => 'Encabezado'])
+
+        @elseif (Auth::user()->role === 'trabajador')
+            {{-- Navbar CLIENTE --}}
+            @include('forms', ['Modo' => 'Encabezado'])
+        @endif
+    @endauth
     <div class="container mt-4">
 
     <div class="d-flex justify-content-between align-items-center mb-3">

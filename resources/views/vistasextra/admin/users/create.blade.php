@@ -12,13 +12,14 @@
 
 
     @auth
-    @if (Auth::user()->role === 'admin')
-        @include('forms', ['Modo' => 'Encabezado'])
-    @elseif (Auth::user()->role === 'cliente')
-        @include('forms', ['Modo' => 'EncabezadoClie'])
-    @endif
-    @else
-        @include('forms', ['Modo' => 'EncabezadoClie'])
+        @if (Auth::user()->role === 'trabajador')
+            {{-- Navbar ADMIN --}}
+            @include('forms', ['Modo' => 'Encabezado'])
+
+        @elseif (Auth::user()->role === 'trabajador')
+            {{-- Navbar CLIENTE --}}
+            @include('forms', ['Modo' => 'Encabezado'])
+        @endif
     @endauth
 </head>
 

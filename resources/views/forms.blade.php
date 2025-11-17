@@ -388,10 +388,6 @@
 
                 <!-- Acciones secundarias -->
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/login') }}">🔑 Iniciar Sesión</a>
-                </li>
-
-                <li class="nav-item">
                     <a class="nav-link" href="{{ url('/contactanos') }}">📞 Contacto</a>
                 </li>
 

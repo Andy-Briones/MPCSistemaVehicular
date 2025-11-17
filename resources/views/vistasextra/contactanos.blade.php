@@ -6,6 +6,15 @@
     <title>Servicio Técnico</title>
 </head>
 <body>
-    @include('forms', ['Modo' => 'Encabezado'])
+    @auth
+        @if (Auth::user()->role === 'trabajador')
+            {{-- Navbar ADMIN --}}
+            @include('forms', ['Modo' => 'Encabezado'])
+
+        @elseif (Auth::user()->role === 'trabajador')
+            {{-- Navbar CLIENTE --}}
+            @include('forms', ['Modo' => 'Encabezado'])
+        @endif
+    @endauth
 </body>
 </html>

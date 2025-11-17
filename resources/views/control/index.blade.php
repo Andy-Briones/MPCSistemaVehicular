@@ -10,6 +10,16 @@
 </head>
 
 <body>
+@auth
+        @if (Auth::user()->role === 'trabajador')
+            {{-- Navbar ADMIN --}}
+            @include('forms', ['Modo' => 'Encabezado'])
+
+        @elseif (Auth::user()->role === 'trabajador')
+            {{-- Navbar CLIENTE --}}
+            @include('forms', ['Modo' => 'Encabezado'])
+        @endif
+    @endauth
     {{-- Alertas --}}
     @if (!empty($alerta))
         <div class="alert alert-warning">

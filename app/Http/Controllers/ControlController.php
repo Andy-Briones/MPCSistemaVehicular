@@ -372,7 +372,7 @@ class ControlController extends Controller
     }
 
     // ===== CONDUCTOR =====
-    $section->addText("Conductor: " . ($conductor->nombre ?? '-') . " " . ($conductor->apellido ?? '-'), ['bold' => true]);
+    $section->addText("Conductor: " . ($conductor->nombre ?? '-') . " " . ($conductor->dni ?? '-'), ['bold' => true]);
     $section->addText("Lugar de destino: " . ($control->lugarD ?? '-'),['bold' => true] );
 
     // ======== GENERAR QR ========

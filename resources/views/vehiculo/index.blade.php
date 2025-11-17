@@ -6,155 +6,124 @@
     <title>Lista de Vehiculos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-    /* ===========================
-   FONDO GENERAL
-=========================== */
-body {
-    background: #eef1f7;
-    font-family: "Poppins", sans-serif;
-}
-
-/* ===========================
-   SEPARACIÓN DEL NAVBAR
-=========================== */
-.container {
-    margin-top: 30px;
-}
-
-/* ===========================
-   TÍTULO CORPORATIVO
-=========================== */
-.page-title {
-    font-weight: 700;
-    font-size: 28px;
-    color: #1a1f36;
-    position: relative;
-    padding-left: 14px;
-}
-
-.page-title::before {
-    content: "";
-    position: absolute;
-    width: 6px;
-    height: 100%;
-    background: #0d6efd;
-    border-radius: 4px;
-    left: 0;
-    top: 0;
-}
-
-/* ===========================
-   BOTONES SUPERIORES
-=========================== */
-.btn-primary {
-    background: #0d6efd !important;
-    border: none !important;
-    font-weight: 600;
-    padding: 10px 16px !important;
-    border-radius: 10px !important;
-    transition: .2s ease-in-out;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    background: #0b5ed7 !important;
-}
-
-.btn-outline-secondary {
-    font-weight: 600;
-    border-radius: 10px !important;
-}
-
-/* ===========================
-   CARD DEL LISTADO
-=========================== */
-.card {
-    border-radius: 14px !important;
-    background: rgba(255, 255, 255, 0.92) !important;
-    backdrop-filter: blur(8px) !important;
-    box-shadow: 0px 8px 25px rgba(0,0,0,0.08) !important;
-}
-
-/* ===========================
-   TABLA CORPORATIVA
-=========================== */
-.table-striped > tbody > tr:nth-of-type(odd) {
-    background: #f6f8fc !important;
-}
-
-.table thead.table-dark {
-    background: #0d6efd !important;
-}
-
-.table thead th {
-    border: none !important;
-    font-size: 14px;
-    letter-spacing: .3px;
-}
-
-.table tbody td {
-    vertical-align: middle !important;
-    padding: 12px 10px !important;
-    font-size: 14px;
-}
-
-/* HOVER PROFESIONAL */
-.table tbody tr:hover {
-    background: rgba(13,110,253,0.14) !important;
-    cursor: pointer;
-    transition: .2s ease-in-out;
-}
-
-/* ===========================
-   BOTONES DE LA TABLA (AMARILLOS)
-=========================== */
-.btn-warning {
-    background: #ffc107 !important;
-    color: black !important;
-    border: none !important;
-    padding: 6px 12px !important;
-    border-radius: 6px !important;
-    font-weight: 600 !important;
-    transition: .2s ease-in-out;
-}
-
-.btn-warning:hover {
-    background: #e0a800 !important;
-    transform: translateY(-2px);
-}
-
-/* ===========================
-   PAGINACIÓN
-=========================== */
-.pagination .page-item .page-link {
-    color: #0d6efd !important;
-    border-radius: 8px !important;
-    border: 1px solid #cfd5e1 !important;
-    margin: 0 3px;
-    padding: 8px 14px !important;
-    font-weight: 500;
-}
-
-.pagination .page-item.active .page-link {
-    background: #0d6efd !important;
-    border-color: #0d6efd !important;
-    color: white !important;
-}
-
-/* ===========================
-   RESPONSIVE
-=========================== */
-@media (max-width: 768px) {
-    .d-flex.justify-content-between {
-        flex-direction: column;
-        gap: 12px;
+    body {
+        background: radial-gradient(circle at top, #1f2731, #111418 65%);
+        color: #e1e7ee;
+        font-family: 'Inter', sans-serif;
+        min-height: 100vh;
+        padding-top: 20px;
     }
-}
 
-    </style>
+    /* Título */
+    .page-title {
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: #58a6ff;
+        text-shadow: 0 0 4px rgba(88,166,255,0.5);
+    }
+
+    /* Botones superiores */
+    .btn-primary {
+        background: linear-gradient(135deg, #2385ff, #1260c4);
+        border: none;
+        font-weight: 600;
+        padding: 10px 16px;
+        border-radius: 10px;
+        transition: 0.25s;
+    }
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #3c9bff, #1a6ed8);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(53,134,255,0.35);
+    }
+
+    .btn-outline-secondary {
+        border-radius: 10px;
+        font-weight: 600;
+        transition: 0.25s;
+    }
+    .btn-outline-secondary:hover {
+        background-color: #30363d;
+        color: #fff;
+    }
+
+    /* Tarjeta principal */
+    .card {
+        background: rgba(22, 27, 34, 0.9);
+        border-radius: 18px;
+        border: 1px solid rgba(88,166,255,0.25);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+        backdrop-filter: blur(10px);
+    }
+
+    /* Tabla */
+    table {
+        color: #d1d7de !important;
+    }
+
+    thead.table-dark {
+        background: #0d1117 !important;
+        color: #58a6ff !important;
+        border-bottom: 2px solid #2385ff;
+    }
+
+    tbody tr {
+        transition: background 0.2s;
+    }
+
+    tbody tr:hover {
+        background: rgba(88,166,255,0.07);
+    }
+
+    .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: rgba(255,255,255,0.03);
+    }
+
+    /* Botones en acciones */
+    .btn-warning {
+        background: linear-gradient(135deg, #f0ad4e, #c97d14);
+        border: none;
+        padding: 5px 10px;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: 0.25s;
+    }
+    .btn-warning:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+    }
+
+    /* Paginación */
+    .pagination .page-link {
+        background: #0d1117;
+        color: #58a6ff;
+        border: 1px solid #30363d;
+    }
+
+    .pagination .page-item.active .page-link {
+        background: #2385ff;
+        color: white;
+        border-color: #2385ff;
+    }
+
+    .pagination .page-link:hover {
+        background: #1b222c;
+        color: #79b8ff;
+    }
+</style>
+
 </head>
 <body>
-@include('forms', ['Modo' => 'Encabezado'])
+@auth
+        @if (Auth::user()->role === 'trabajador')
+            {{-- Navbar ADMIN --}}
+            @include('forms', ['Modo' => 'Encabezado'])
+
+        @elseif (Auth::user()->role === 'trabajador')
+            {{-- Navbar CLIENTE --}}
+            @include('forms', ['Modo' => 'Encabezado'])
+        @endif
+    @endauth
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h3 class="page-title mb-0">🚗 Lista de Vehículos</h3>

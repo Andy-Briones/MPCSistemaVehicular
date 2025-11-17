@@ -8,6 +8,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+@auth
+        @if (Auth::user()->role === 'trabajador')
+            {{-- Navbar ADMIN --}}
+            @include('forms', ['Modo' => 'Encabezado'])
+
+        @elseif (Auth::user()->role === 'trabajador')
+            {{-- Navbar CLIENTE --}}
+            @include('forms', ['Modo' => 'Encabezado'])
+        @endif
+    @endauth
     <div class="container mt-4">
     <form action="{{route('caracteristicas.update', $caracteristica->id)}}" method="POST" enctype="multipart/form-data"
         class="p-4 bg-white shadow rounded">
