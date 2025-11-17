@@ -48,12 +48,23 @@
 
 </head>
 <body>
-    @include('forms', ['Modo' => 'Encabezado'])
+    @auth
+        @if (Auth::user()->rol === 'trabajador')
+            @include('forms', ['Modo' => 'Encabezado'])
+        @elseif (Auth::user()->rol === 'trabajador')
+            @include('forms', ['Modo' => 'Encabezado'])
+        @endif
+    @endauth
+
+    <div class="register-link">
+            <a href="{{ route('register') }}">¿No tienes cuenta? Regístrate aquí</a>
+    </div>
+    
     <!-- Encabezado -->
     <div class="titulo-principal">
         <h2>🚗 Sistema de control vehicular del Área de Patrimonio</h2>
     </div>
-
+    
     {{-- LOGO CENTRADO --}}
     <div class="logo-container">
         <img src="{{ asset('Imgs/logoCaja.png') }}" class="logo-image" alt="Logo Municipalidad">

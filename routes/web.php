@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ControlController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehiculoController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +30,22 @@ Route::resource('vehiculos', 'App\Http\Controllers\VehiculoController');
 Route::resource('conductores', 'App\Http\Controllers\ConductorController');
 Route::resource('controles', 'App\Http\Controllers\ControlController');
 Route::resource('caracteristicas', 'App\Http\Controllers\CaracteristicaController');
+
+//Rutas Extras
+Route::get('/contactanos', function () {
+    return view('vistasextra.contactanos');
+})->name('contactanos');
+Route::get('/login', function () {
+    return view('vistasextra.login');
+})->name('login');
+
+//Inicio de sesion
+// Login
+Route::get('login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('login', [AuthController::class, 'login'])->name('login.post');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+//Usuarios (público)
+// Registro público de clientes
+Route::get('register', [UserController::class, 'showRegisterForm'])->name('register');
+Route::post('register', [UserController::class, 'register'])->name('register.post');

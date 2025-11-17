@@ -97,10 +97,10 @@ class ControlController extends Controller
             $filename = time() . '_' . $file->getClientOriginalName();
 
             // mover a public/imagenes
-            $file->move(public_path('Imgs'), $filename);
+            $file->move(public_path('Imgs/soat'), $filename);
 
             // guardar en la BD solo la ruta o el nombre
-            $data['imagenSoat'] = 'Imgs/' . $filename;
+            $data['imagenSoat'] = 'Imgs/soat/' . $filename;
         }
 
 
@@ -148,10 +148,10 @@ class ControlController extends Controller
             $filename = time() . '_' . $file->getClientOriginalName();
 
             // Guardar en public/Imgs
-            $file->move(public_path('Imgs'), $filename);
+            $file->move(public_path('Imgs/soat'), $filename);
 
             // Guardar ruta en BD
-            $data['imagenSoat'] = 'Imgs/' . $filename;
+            $data['imagenSoat'] = 'Imgs/soat/' . $filename;
         }
 
         // Actualizar todo

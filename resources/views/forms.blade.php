@@ -348,7 +348,7 @@
     <div class="container">
 
         <!-- Título -->
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             Sistema de Registro Vehicular
         </a>
 
@@ -388,13 +388,25 @@
 
                 <!-- Acciones secundarias -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">🔑 Iniciar Sesión</a>
+                    <a class="nav-link" href="{{ url('/login') }}">🔑 Iniciar Sesión</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">📞 Contacto</a>
+                    <a class="nav-link" href="{{ url('/contactanos') }}">📞 Contacto</a>
                 </li>
 
+                @auth
+                    <li class="nav-item">
+                        <span class="nav-link user-greeting">Hola, {{ Auth::user()->name }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link logout-btn" href="{{ route('logout') }}">Cerrar sesión</a>
+                    </li>
+                    @else
+                    <li class="nav-item">
+                        <a class="nav-link login-btn" href="{{ route('login') }}">Iniciar sesión</a>
+                    </li>
+                @endauth
             </ul>
 
         </div>
