@@ -8,10 +8,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// ruta para ver vehículos eliminados 
+// ruta para ver vehículos de baja 
 Route::get('/vehiculos/eliminado', [VehiculoController::class, 'vistaEliminados'])->name('vehiculos.eliminado');
 Route::put('/vehiculos/{id}/eliminar', [VehiculoController::class, 'eliminados'])->name('vehiculos.eliminar');
 Route::put('/vehiculos/restaurar/{id}', [VehiculoController::class, 'restaurar'])->name('vehiculos.restaurar');
+
+// ruta para ver vehículos en mantenimiento 
+Route::get('/vehiculos/mantenenido', [VehiculoController::class, 'vistaMantenidos'])->name('vehiculos.mantenidos');
+Route::put('/vehiculos/{id}/mantener', [VehiculoController::class, 'mantener'])->name('vehiculos.mantener');
+Route::put('/vehiculos/restaurar/{id}', [VehiculoController::class, 'restaurar'])->name('vehiculos.restaurar');
+
 
 // ruta para descargar word y una vista previa
 Route::get('/controles/{id}/descargar-word', [App\Http\Controllers\ControlController::class, 'descargarWord'])

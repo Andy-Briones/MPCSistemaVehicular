@@ -6,60 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <!-- Bootstrap CSS -->
-    {{-- Tu CSS personalizado --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    {{-- Tu CSS personalizado --}}
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+            color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* SEPARACIÓN LIMPIA ENTRE NAVBAR Y TÍTULO */
+        .titulo-principal {
+            margin-top: 60px; /* 👈 Ajusta esta separación */
+            text-align: center;
+        }
+
+        .titulo-principal h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #58a6ff;
+            text-transform: uppercase;
+        }
+
+        /* Logo */
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .logo-image {
+            max-width: 240px;
+            transition: 0.3s;
+        }
+
+        .logo-image:hover {
+            transform: scale(1.05);
+        }
+    </style>
+
 </head>
-<body class="bg-light">
-
+<body>
+    @include('forms', ['Modo' => 'Encabezado'])
     <!-- Encabezado -->
-    <div class="container mt-4 text-center">
-        <h2 class="fw-bold text-primary">🚗 Sistema de Registro Vehicular</h2>
+    <div class="titulo-principal">
+        <h2>🚗 Sistema de control vehicular del Área de Patrimonio</h2>
     </div>
+
+    {{-- LOGO CENTRADO --}}
     <div class="logo-container">
-        <img src="{{ asset('Imgs/logoCaja.png') }}" alt="Logo Municipalidad" class="logo-image">
+        <img src="{{ asset('Imgs/logoCaja.png') }}" class="logo-image" alt="Logo Municipalidad">
     </div>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-3">
-        <div class="container">
-            <a class="navbar-brand text-center" href="#">Sistema de control vehicular del Area de Patrimonio</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">🔑 Iniciar Sesión</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">📞 Contacto</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Opciones principales -->
-    <div class="container mt-5 text-center">
-        <div class="row g-3">
-            <div class="col-md-4">
-                <a href="{{ url('/vehiculos')}}" class="btn btn-primary w-100 py-3 shadow">🚘 Vehículos</a>
-            </div>
-            <div class="col-md-4">
-                <a href="{{ url('/conductores')}}" class="btn btn-success w-100 py-3 shadow">👷 Conductores</a>
-            </div>
-            <div class="col-md-4">
-                <a href="{{ url('/caracteristicas')}}" class="btn btn-warning w-100 py-3 shadow">⚙️ Características</a>
-            </div>
-            <div class="col-md-4">
-                <a href="{{ url('/controles')}}" class="btn btn-warning w-100 py-3 shadow">⚙️ Revisión</a>
-            </div>
-            <div class="col-md-4">
-                <a href="{{ route('vehiculos.eliminado') }}" class="btn btn-info w-100 py-3 shadow">🗑️ De baja</a>
-            </div>
-        </div>
-    </div>
+    
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     

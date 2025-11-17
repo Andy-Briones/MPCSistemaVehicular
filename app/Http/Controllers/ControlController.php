@@ -74,6 +74,7 @@ class ControlController extends Controller
     }
     public function store(Request $request)
     {
+        // Guardar imagen
         $data = $request->except('_token');
 
         // GUARDAR IMAGEN COMO BASE64 EN LA BD

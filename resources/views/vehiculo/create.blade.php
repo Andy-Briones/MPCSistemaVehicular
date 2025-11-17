@@ -179,11 +179,12 @@
             box-shadow: 0 0 25px rgba(0, 180, 216, 0.4);
             transition: 0.4s ease;
         }
+        
     </style>
 </head>
 
 <body>
-
+@include('forms', ['Modo' => 'Encabezado'])
     <h3>⚙️ Gestión de Vehículos</h3>
 
     <div class="container mt-4">
@@ -276,7 +277,8 @@
     </script>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -10,11 +10,12 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-/* Fondo general */
+/* Fondo general - NO usar bg-light en el body */
 body {
-    background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+    background: linear-gradient(135deg, #1a1a1a, #2c2c2c) !important;
     color: #f8f9fa;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
 }
 
 /* Encabezado */
@@ -24,26 +25,17 @@ h2 {
     font-size: 2rem;
 }
 
-/* Estilos para el contenedor del logo */
+/* Logo */
 .logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    margin: 0 auto;
-    max-width: 100%;
-    overflow: hidden;
 }
 
-/* Estilos para la imagen del logo */
 .logo-image {
     max-width: 250px;
     max-height: 250px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
     transition: transform 0.3s ease;
     filter: drop-shadow(0 10px 10px rgba(67, 180, 211, 0.1));
 }
@@ -55,8 +47,10 @@ h2 {
 /* Navbar estilo coche */
 .navbar {
     background: linear-gradient(90deg, #000000, #1a1a1a, #000000);
-    border-bottom: 3px solid #dc3545; /* línea roja deportiva */
+    border-bottom: 3px solid #dc3545;
     box-shadow: 0 3px 10px rgba(0,0,0,0.6);
+    position: relative;
+    z-index: 1000; /* asegura que no quede oculto */
 }
 
 .navbar-brand {
@@ -72,10 +66,10 @@ h2 {
 }
 
 .navbar-nav .nav-link:hover {
-    color: #dc3545 !important; /* rojo deportivo */
+    color: #dc3545 !important;
 }
 
-/* Botones principales */
+/* Botones */
 .btn {
     font-size: 1.2rem;
     font-weight: bold;
@@ -84,43 +78,17 @@ h2 {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.btn-primary {
-    background: linear-gradient(45deg, #007bff, #0056b3);
-}
-.btn-primary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(0,123,255,0.6);
-}
-
-.btn-success {
-    background: linear-gradient(45deg, #28a745, #19692c);
-}
-.btn-success:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(40,167,69,0.6);
-}
-
-.btn-warning {
-    background: linear-gradient(45deg, #ffc107, #e0a800);
-    color: #212529;
-}
-.btn-warning:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(255,193,7,0.6);
-}
-
-/* Tarjetas de opciones */
+/* Tarjetas */
 .row .col-md-4 a {
     border: 2px solid #333;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-/* Efecto asfalto en el fondo */
+/* Fondo asfalto */
 .container.mt-5 {
     background: rgba(255, 255, 255, 0.05);
     padding: 30px;
     border-radius: 15px;
     box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
 }
-

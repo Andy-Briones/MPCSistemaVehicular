@@ -205,14 +205,14 @@
                         value="{{ isset($vehiculo->combustible) ? $vehiculo->combustible : '' }}">
                 </div>
                 <div class="col-md-6">
-                    <label for="añoFabricacion" class="form-label"> Año Fabricacion</label>
-                    <input type="date" name="añoFabricacion" id="añoFabricacion" class="form-control"
-                        value="{{ isset($vehiculo->añoFabricacion) ? $vehiculo->añoFabricacion : '' }}">
+                    <label for="aniooFabricacion" class="form-label"> Año Fabricacion</label>
+                    <input type="date" name="aniooFabricacion" id="aniooFabricacion" class="form-control"
+                        value="{{ isset($vehiculo->aniooFabricacion) ? $vehiculo->aniooFabricacion : '' }}">
                 </div>
                 <div class="col-md-6">
-                    <label for="añoModelo" class="form-label"> Año Modelo</label>
-                    <input type="date" name="añoModelo" id="añoModelo" class="form-control"
-                        value="{{ isset($vehiculo->añoModelo) ? $vehiculo->añoModelo : '' }}">
+                    <label for="anioModelo" class="form-label"> Año Modelo</label>
+                    <input type="date" name="anioModelo" id="anioModelo" class="form-control"
+                        value="{{ isset($vehiculo->anioModelo) ? $vehiculo->anioModelo : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="version" class="form-label"> Version</label>
@@ -338,4 +338,66 @@
             </div>
         </div>
     </div>
+@endif
+
+{{--  Navbar  --}}
+@if ($Modo == 'Encabezado')
+
+    <!-- Navbar completo -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-3">
+    <div class="container">
+
+        <!-- Título -->
+        <a class="navbar-brand" href="#">
+            Sistema de Registro Vehicular
+        </a>
+
+        <!-- Botón responsive -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Contenido -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav ms-auto">
+
+                <!-- Opciones principales -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="menuVehiculos" role="button" data-bs-toggle="dropdown">
+                        🚘 Vehículos
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="{{ url('/vehiculos') }}">Lista de vehículos</a></li>
+                        <li><a class="dropdown-item" href="{{ route('vehiculos.eliminado') }}">🗑️ De baja</a></li>
+                        <li><a class="dropdown-item" href="{{ route('vehiculos.mantenidos') }}">🔧 Mantenimiento</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/conductores') }}">👷 Conductores</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/caracteristicas') }}">⚙️ Características</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/controles') }}">📋 Revisión</a>
+                </li>
+
+                <!-- Acciones secundarias -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">🔑 Iniciar Sesión</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">📞 Contacto</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
 @endif

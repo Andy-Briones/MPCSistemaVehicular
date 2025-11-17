@@ -84,5 +84,31 @@ class VehiculoController extends Controller
 
         return redirect()->route('vehiculos.eliminado')->with('mensaje', 'Vehículo restaurado correctamente.');
     }
+    
+
+    //Mostrar los vehiculos que estan en mantenimiento
+    public function vistaMantenidos()
+    {
+        $vehiculo['mpcsvehiculos'] = mpcsvehiculo::where('Estado', 'mantenimiento')->paginate(5);
+        return view('vehiculo.mantenimiento', $vehiculo);
+    }
+    //Mover vehiculo a mantenimiento
+    public function mantener($id)
+    {
+        $vehiculo = mpcsvehiculo::findOrFail($id);
+        $vehiculo->Estado = 'mantenimiento';
+        $vehiculo->save();
+
+        return redirect()->route('vehiculos.index')->with('mensaje', 'Vehículo movido a mantenimiento correctamente.');
+    }
+    //Restaurar vehiculo de mantenimiento a activo
+    public function restaurarM($id)
+    {
+        $vehiculo = mpcsvehiculo::findOrFail($id);
+        $vehiculo->Estado = 'activo';
+        $vehiculo->save();
+
+        return redirect()->route('vehiculos.mantenimiento')->with('mensaje', 'Vehículo restaurado correctamente.');
+    }
 }
 

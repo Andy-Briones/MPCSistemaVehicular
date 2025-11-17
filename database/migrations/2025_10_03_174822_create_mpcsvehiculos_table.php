@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('potencia');
             $table->string('formrod');
             $table->string('combustible');
-            $table->date('añoFabricacion');
-            $table->date('añoModelo');
+            $table->date('aniooFabricacion');
+            $table->date('anioModelo');
             $table->string('version');
             $table->string('placaActual');
             $table->string('placaAnterior');
