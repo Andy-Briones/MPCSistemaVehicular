@@ -25,4 +25,8 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->intended('/');
     }
+
+    public function accessdenegado() {
+        return view('vistasextra.accesodenegado');
+    }
 }

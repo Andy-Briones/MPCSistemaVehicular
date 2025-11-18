@@ -14,10 +14,10 @@ class RoleMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $roles): Response
+    public function handle(Request $request, Closure $next, ...$roles): Response
     {
         if (!Auth::check()) {
-            return redirect('/login')->with('error', 'Debes iniciar sesión.');
+            return redirect('/accessdenegado')->with('error', 'Debes iniciar sesión.');
         }
 
         $user = Auth::user();

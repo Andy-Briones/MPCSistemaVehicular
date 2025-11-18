@@ -47,6 +47,6 @@ class Kernel extends HttpKernel
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'guest' => \Illuminate\Auth\Middleware\RedirectIfAuthenticated::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class, // <-- nuestro admin
-        'role' => \App\Http\Middleware\RoleMiddleware::class
+        'role' => \App\Http\Middleware\RoleMiddleware::class,
     ];
 }
