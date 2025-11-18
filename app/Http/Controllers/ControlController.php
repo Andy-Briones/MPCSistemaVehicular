@@ -89,7 +89,7 @@ class ControlController extends Controller
         // Guardar imagen
         $data = $request->except('_token');
 
-        // GUARDAR IMAGEN COMO BASE64 EN LA BD
+        // GUARDAR IMAGEN DE SOAT COMO BASE64 EN LA BD
         if ($request->hasFile('imagenSoat')) {
             $file = $request->file('imagenSoat');
 
@@ -103,6 +103,19 @@ class ControlController extends Controller
             $data['imagenSoat'] = 'Imgs/soat/' . $filename;
         }
 
+        // GUARDAR IMAGEN DE REVISION TECNICA COMO BASE64 EN LA BD
+        if ($request->hasFile('imagenRev')) {
+            $file = $request->file('imagenRev');
+
+            // nombre único
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            // mover a public/imagenes
+            $file->move(public_path('Imgs/revisionT'), $filename);
+
+            // guardar en la BD solo la ruta o el nombre
+            $data['imagenRev'] = 'Imgs/revisionT/' . $filename;
+        }
 
         mpcscontrol::create($data);
 
@@ -131,7 +144,7 @@ class ControlController extends Controller
 
         $data = $request->except(['_token', '_method']);
 
-        // Si suben una nueva imagen
+        // Si suben una nueva imagen del soat
         if ($request->hasFile('imagenSoat')) {
 
             // ================================
@@ -152,6 +165,30 @@ class ControlController extends Controller
 
             // Guardar ruta en BD
             $data['imagenSoat'] = 'Imgs/soat/' . $filename;
+        }
+
+        
+        // Si suben una nueva imagen de la revision tecnica
+        if ($request->hasFile('imagenRev')) {
+
+            // ================================
+            // 1. ELIMINAR IMAGEN ANTERIOR
+            // ================================
+            if ($control->imagenRev && file_exists(public_path($control->imagenRev))) {
+                unlink(public_path($control->imagenRev));
+            }
+
+            // ================================
+            // 2. GUARDAR LA NUEVA IMAGEN
+            // ================================
+            $file = $request->file('imagenRev');
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            // Guardar en public/Imgs
+            $file->move(public_path('Imgs/revisionT'), $filename);
+
+            // Guardar ruta en BD
+            $data['imagenRev'] = 'Imgs/revisionT/' . $filename;
         }
 
         // Actualizar todo

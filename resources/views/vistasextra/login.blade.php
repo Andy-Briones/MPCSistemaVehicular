@@ -180,8 +180,8 @@
                 @csrf
 
                 <div class="form-group">
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" name="email" id="email" required autofocus>
+                    <label for="text">Usuario</label>
+                    <input type="text" name="name" id="name" required autofocus>
                 </div>
 
                 <div class="form-group">

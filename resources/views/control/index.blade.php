@@ -5,8 +5,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Revisiones</title>
-    @vite(['resources/css/controlfile/controlindex.css', 'resources/js/app.js'])
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* ===============================
+   FONDO GENERAL
+=============================== */
+body {
+    background: linear-gradient(135deg, #0b1b2b, #123a56);
+    font-family: 'Inter', sans-serif;
+    padding-bottom: 40px;
+    color: #ffffff;
+}
+
+/* ===============================
+   TITULO / ENCABEZADO
+=============================== */
+.container h2 {
+    font-weight: 700;
+    color: #58a6ff;
+    margin: 25px 0;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+/* ===============================
+   ALERTAS
+=============================== */
+.alert-warning {
+    background: #ffeb3b33;
+    border-left: 5px solid #ff9800;
+    color: #0b1b2b;
+}
+
+/* ===============================
+   BOTONES
+=============================== */
+.btn-primary {
+    background: linear-gradient(135deg, #007bff, #00bcd4);
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.btn-primary:hover {
+    background: linear-gradient(135deg, #005fa3, #0097a7);
+}
+
+.btn-outline-secondary {
+    border-radius: 8px;
+    padding: 8px 20px;
+    border-color: #cfd8dc;
+    color: #fff;
+}
+.btn-outline-secondary:hover {
+    background-color: #cfd8dc;
+    color: #000;
+}
+
+/* ===============================
+   TARJETA / CARD
+=============================== */
+.card {
+    border-radius: 15px;
+    border-left: 5px solid #007bff;
+    border-right: 5px solid #00bcd4;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+.card-header {
+    background: linear-gradient(135deg, #003b70, #005fa3);
+    color: #fff;
+    font-weight: 600;
+}
+
+/* ===============================
+   TABLA
+=============================== */
+.table thead {
+    background: linear-gradient(135deg, #003b70, #005fa3);
+    color: #8e4b4bff;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background: rgba(255,255,255,0.1);
+}
+.table-striped tbody tr:nth-of-type(even) {
+    background: rgba(255,255,255,0.05);
+}
+.table td, .table th {
+    vertical-align: middle;
+    padding: 12px;
+    color: #000000ff;
+}
+
+/* ===============================
+   IMAGEN MINIATURA
+=============================== */
+.img-thumbnail {
+    border-radius: 10px;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+.img-thumbnail:hover {
+    transform: scale(1.05);
+}
+
+/* ===============================
+   PAGINACIÓN
+=============================== */
+.pagination .page-link {
+    border-radius: 8px;
+    color: #0b1b2b;
+}
+.pagination .page-link:hover {
+    background-color: #007bff;
+    color: white;
+}
+.pagination .active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+/* ===============================
+   MODAL IMAGEN
+=============================== */
+#imagenAmpliada {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    cursor: zoom-in;
+    transition: transform 0.3s;
+}
+
+/* ===============================
+   RESPONSIVE
+=============================== */
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+    .btn, .btn-primary, .btn-outline-secondary {
+        margin-bottom: 8px;
+    }
+}
+
+    </style>
 </head>
 
 <body>
@@ -88,6 +229,7 @@
                             <th>Lugar de Destino</th>
                             <th>Conductor</th>
                             <th>Imagen Soat</th>
+                            <th>Imagen Revision T.</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -118,18 +260,25 @@
                                     @endif
                                 </td>
                                 <td>
+                                    @if ($ctrl->imagenRev)
+                                        <img src="{{ asset($ctrl->imagenRev) }}" 
+                                            alt="SOAT"
+                                            width="120"
+                                            class="img-thumbnail"
+                                            style="cursor:pointer"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalImagen"
+                                            onclick="mostrarImagen('{{ asset($ctrl->imagenRev) }}')">
+                                    @else
+                                        <span class="text-muted">Sin imagen</span>
+                                    @endif
+                                </td>
+                                <td>
                                     <a href="{{ route('controles.edit', $ctrl->id) }}" class="btn btn-sm btn-warning">✏️</a>
                                     <a href="{{ route('controles.preview', $ctrl->id) }}" class="btn btn-sm btn-info">Vista
                                         previa</a>
                                     <a href="{{ route('controles.descargarword', $ctrl->id) }}"
                                         class="btn btn-sm btn-success">Descargar</a>
-                                    {{-- <form action="{{ route('control.destroy', $ctrl->id) }}" method="POST"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-sm btn-danger"
-                                            onclick="return confirm('¿Eliminar este registro?')">🗑️</button>
-                                    </form> --}}
                                 </td>
                             </tr>
                         @empty
@@ -206,8 +355,7 @@ function imprimirImagen() {
 }
 </script>
 
+<!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
-
 </html>

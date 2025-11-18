@@ -17,6 +17,7 @@ class mpcscontrol extends Model
         'lugarD',
         'mpcsvehiculo_id',
         'imagenSoat', // también este
+        'imagenRev', // y este
     ];
     public function vehiculo()
     {

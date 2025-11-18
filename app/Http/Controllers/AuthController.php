@@ -12,7 +12,7 @@ class AuthController extends Controller
     }
 
     public function login(Request $request) {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('name', 'password');
 
         if (Auth::attempt($credentials)) {
             return redirect()->intended('/');

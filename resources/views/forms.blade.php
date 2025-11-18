@@ -335,6 +335,22 @@
                         </div>
                     </div>
                 @endif
+                {{-- Imagen de la Revision Tecnica --}}
+                <div class="col-md-6">
+                    <label for="imagenRev" class="form-label">Imagen Revision Técnica (opcional)</label>
+                    <input type="file" name="imagenRev" id="imagenRev" class="form-control" accept="image/*">
+                    @error('imagenRev') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
+
+                {{-- Mostrar imagen actual (solo en editar) --}}
+                @if($Modo == 'editarControl' && $control->imagenRev)
+                    <div class="col-12">
+                        <div class="mt-3">
+                            <small class="text-muted">Imagen actual:</small><br>
+                            <img src="{{ $control->imagenRev }}" width="180" class="img-thumbnail mt-1">
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
