@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 
 class CaracteristicaController extends Controller
 {
+    //Seguridad de acceso
+    public function __construct()
+    {
+        // Debe estar logueado
+        $this->middleware('auth');
+
+        // Solo roles admin o trabajador
+        $this->middleware('role:admin,trabajador');
+    }
+
     //
     public function index()
     {

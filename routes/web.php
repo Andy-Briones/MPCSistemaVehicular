@@ -38,6 +38,10 @@ Route::get('/contactanos', function () {
 Route::get('/login', function () {
     return view('vistasextra.login');
 })->name('login');
+Route::get('/acceso-denegado', function () {
+    return view('accesodenegado');
+})->name('acceso.denegado');
+
 
 //Inicio de sesion
 // Login
