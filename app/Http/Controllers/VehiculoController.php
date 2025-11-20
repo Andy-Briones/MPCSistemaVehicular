@@ -19,6 +19,7 @@ class VehiculoController extends Controller
         // Solo roles admin o trabajador
         $this->middleware('role:admin,trabajador');
     }
+
     //Mostrar vehiculos que estan activos
     public function index()
     {
@@ -38,6 +39,36 @@ class VehiculoController extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate([
+            'categoria'             => 'required|string|max:255',
+            'codPatrimonial'        => 'required|string|max:255',
+            'marca'                 => 'required|string|max:255',
+            'modelo'                => 'required|string|max:255',
+            'color'                 => 'required|string|max:255',
+            'numeroVin'             => 'required|string|max:255',
+            'numeroMotor'           => 'required|string|max:255',
+            'carroceria'            => 'required|string|max:255',
+            'potencia'              => 'required|string|max:255',
+            'formrod'               => 'required|string|max:255',
+            'combustible'           => 'required|string|max:255',
+
+            'aniooFabricacion'      => 'required|date',
+            'anioModelo'            => 'required|date',
+
+            'version'               => 'required|string|max:255',
+            'placaActual'           => 'required|string|max:20',
+            'placaAnterior'         => 'nullable|string|max:20',
+            'condicion'             => 'required|string|max:255',
+
+            'Estado'                => 'nullable|string|in:activo,inactivo,mantenimiento',
+
+            // RELACIONES
+            'mpcscaracteristica_id' => 'required|exists:mpcscaracteristicas,id',
+            'mpcsconductor_id'      => 'required|exists:mpcsconductors,id',
+
+            'observaciones'         => 'nullable|string|max:5000'
+        ]);
+
         $vehiculo = request()->except('_token');
         mpcsvehiculo::insert($vehiculo);
         return redirect('vehiculos');
@@ -61,6 +92,36 @@ class VehiculoController extends Controller
     }
     public function update(Request $request, $id)
     {
+        // VALIDACIONES UPDATE
+        $request->validate([
+            'categoria'             => 'required|string|max:255',
+            'codPatrimonial'        => 'required|string|max:12',
+            'marca'                 => 'required|string|max:255',
+            'modelo'                => 'required|string|max:255',
+            'color'                 => 'required|string|max:255',
+            'numeroVin'             => 'required|string|max:255',
+            'numeroMotor'           => 'required|string|max:255',
+            'carroceria'            => 'required|string|max:255',
+            'potencia'              => 'required|string|max:255',
+            'formrod'               => 'required|string|max:255',
+            'combustible'           => 'required|string|max:255',
+
+            'aniooFabricacion'      => 'required|date',
+            'anioModelo'            => 'required|date',
+
+            'version'               => 'required|string|max:255',
+            'placaActual'           => 'required|string|max:20',
+            'placaAnterior'         => 'nullable|string|max:20',
+            'condicion'             => 'required|string|max:255',
+
+            'Estado'                => 'nullable|string|in:activo,inactivo,mantenimiento',
+
+            'mpcscaracteristica_id' => 'required|exists:mpcscaracteristicas,id',
+            'mpcsconductor_id'      => 'required|exists:mpcsconductors,id',
+
+            'observaciones'         => 'nullable|string|max:5000'
+        ]);
+    
         $vehiculo = request()->except(['_token', '_method']);
         mpcsvehiculo::where('id', '=', $id)->update($vehiculo);
         return redirect()->route('vehiculos');

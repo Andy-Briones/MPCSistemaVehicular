@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     //Seguridad de acceso
-    public function __construct()
-    {
-        // Debe estar logueado
-        $this->middleware('auth');
+    // public function __construct()
+    // {
+    //     // Debe estar logueado
+    //     $this->middleware('auth');
 
-        // Solo roles admin o trabajador
-        $this->middleware('role:admin,trabajador');
-    }
+    //     // Solo roles admin o trabajador
+    //     $this->middleware('role:admin,trabajador');
+    // }
     public function create() {
         return view('vistasextra.admin.users.create');
     }

@@ -13,7 +13,9 @@ class mpcsconductor extends Model
 
     protected $fillable = [
         'nombre',
+        'dni',
         'licencia',
+        'vencimientoLice',
         'telefono',
         'categoriaLicencia',
         'area',

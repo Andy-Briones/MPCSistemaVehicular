@@ -17,7 +17,6 @@ class CaracteristicaController extends Controller
         $this->middleware('role:admin,trabajador');
     }
 
-    //
     public function index()
     {
         $caracteristica['mpcscaracteristicas'] = mpcscaracteristica::paginate(5);
@@ -30,6 +29,23 @@ class CaracteristicaController extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre' => 'required|string|max:150',
+            'asientos' => 'required|integer|min:1|max:100',
+            'pasajeros' => 'required|integer|min:1|max:100',
+            'ruedas' => 'required|integer|min:2|max:20',
+            'ejes' => 'required|integer|min:1|max:10',
+            'cilindros' => 'required|integer|min:1|max:16',
+
+            'longitud' => 'required|numeric|min:0|max:99999.99',
+            'altura' => 'required|numeric|min:0|max:99999.99',
+            'ancho' => 'required|numeric|min:0|max:99999.99',
+            'cilindrada' => 'required|numeric|min:0|max:99999.999',
+            'pesoBruto' => 'required|numeric|min:0|max:99999.999',
+            'pesoNeto' => 'required|numeric|min:0|max:99999.999',
+            'cargaUtil' => 'required|numeric|min:0|max:99999.999',
+        ]);
+        
         $caracteristica = request()->except('_token');
         mpcscaracteristica::insert($caracteristica);
         // Si la petición es AJAX, devuelve JSON
@@ -51,6 +67,23 @@ class CaracteristicaController extends Controller
     }
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nombre' => 'required|string|max:150',
+            'asientos' => 'required|integer|min:1|max:100',
+            'pasajeros' => 'required|integer|min:1|max:100',
+            'ruedas' => 'required|integer|min:2|max:20',
+            'ejes' => 'required|integer|min:1|max:10',
+            'cilindros' => 'required|integer|min:1|max:16',
+
+            'longitud' => 'required|numeric|min:0|max:99999.99',
+            'altura' => 'required|numeric|min:0|max:99999.99',
+            'ancho' => 'required|numeric|min:0|max:99999.99',
+            'cilindrada' => 'required|numeric|min:0|max:99999.999',
+            'pesoBruto' => 'required|numeric|min:0|max:99999.999',
+            'pesoNeto' => 'required|numeric|min:0|max:99999.999',
+            'cargaUtil' => 'required|numeric|min:0|max:99999.999',
+        ]);
+
         $caracteristica = request()->except(['_token', '_method']);
         mpcscaracteristica::where('id', '=', $id)->update($caracteristica);
         return redirect()->route('caracteristica.index');

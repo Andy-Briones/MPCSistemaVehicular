@@ -17,6 +17,7 @@ class ConductorController extends Controller
         // Solo roles admin o trabajador
         $this->middleware('role:admin,trabajador');
     }
+
     public function index()
     {
         $mpcsconductors  = mpcsconductor::paginate(5);
@@ -49,13 +50,23 @@ class ConductorController extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre' => 'required|string|max:120',
+            'dni' => 'required|digits:8|unique:mpcsconductors,dni',
+            'licencia' => 'required|string|max:20|unique:mpcsconductors,licencia',
+            'vencimientoLice' => 'nullable|date|after:today',
+            'telefono' => 'required|digits:9',
+            'categoriaLicencia' => 'required|string|max:10',
+            'area' => 'required|string|max:150',
+        ]);
+
         $conductor = request()->except('_token');
         mpcsconductor::insert($conductor);
         return redirect('conductores');//->with('mensaje', 'Categoría agregada con éxito');
     }
     public function show()
     {
-        
+        //no se usa
     }
     public function edit($id)
     {
@@ -64,6 +75,15 @@ class ConductorController extends Controller
     }
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nombre' => 'required|string|max:120',
+            'dni' => 'required|digits:8|unique:mpcsconductors,dni',
+            'licencia' => 'required|string|max:20|unique:mpcsconductors,licencia',
+            'vencimientoLice' => 'nullable|date|after:today',
+            'telefono' => 'required|digits:9',
+            'categoriaLicencia' => 'required|string|max:10',
+            'area' => 'required|string|max:150',
+        ]);
         $conductor = request()->except(['_token', '_method']);
         mpcsconductor::where('id', '=', $id)->update($conductor);
         return redirect('conductores');

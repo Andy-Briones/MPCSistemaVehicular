@@ -79,15 +79,6 @@
                         value="{{ old('cargaUtil', isset($caracteristica->cargaUtil) ? $caracteristica->cargaUtil : '') }}">
                 </div>
             </div>
-            {{-- Botones
-            <div class="mt-4 d-flex justify-content-end gap-2">
-                <a href="{{ url('caracteristicas') }}" class="btn btn-outline-secondary">
-                    🔙 Cancelar
-                </a>
-                <button type="submit" class="btn btn-success">
-                    💾 Guardar
-                </button>
-            </div> --}}
         </div>
     </div>
 @endif
@@ -122,9 +113,9 @@
                         value="{{ old('telefono', isset($conductor->telefono) ? $conductor->telefono : '') }}">
                 </div>
                 <div class="col-md-6">
-                    <label for="VencimientoLice" class="form-label">Fecha de Vencimiento de la Licencia</label>
-                    <input type="date" name="VencimientoLice" id="VencimientoLice" class="form-control"
-                        value="{{ old('VencimientoLice', $conductor->vencimientoLice ?? '') }}">
+                    <label for="vencimientoLice" class="form-label">Fecha de Vencimiento de la Licencia</label>
+                    <input type="date" name="vencimientoLice" id="vencimientoLice" class="form-control"
+                        value="{{ old('vencimientoLice', $conductor->vencimientoLice ?? '') }}">
                 </div>
                 <div class="col-md-6">
                     <label for="categoriaLicencia" class="form-label"> Categoria de la Licencia</label>
@@ -314,7 +305,7 @@
                     <select name="mpcsvehiculo_id" id="mpcsvehiculo_id" class="form-select">
                         @foreach($vehiculos as $vehic)
                             <option value="{{ $vehic->id }}" {{ isset($control->mpcsvehiculo_id) && $control->mpcsvehiculo_id == $vehic->id ? 'selected' : '' }}>
-                                {{ $vehic->placaActual }}
+                                {{ $vehic->codPatrimonial }}
                             </option>
                         @endforeach
                     </select>

@@ -141,13 +141,35 @@
             border: 1px solid rgba(255, 71, 71, 0.4);
             color: #ff6b6b;
         }
+        .btn-back {
+        display: inline-block;
+        background-color: #dc3545;  /* rojo estilo Bootstrap */
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    }
+
+    .btn-back:hover {
+        background-color: #bb2d3b; /* más oscuro al pasar */
+        transform: translateY(-2px);
+        box-shadow: 0 5px 12px rgba(0,0,0,0.25);
+    }
+
+    .btn-back:active {
+        transform: scale(0.98);
+    }
+
     </style>
 
 </head>
 
 <body>
     @auth
-        @if (Auth::user()->role === 'trabajador')
+        @if (Auth::user()->role === 'admin')
             {{-- Navbar ADMIN --}}
             @include('forms', ['Modo' => 'Encabezado'])
 

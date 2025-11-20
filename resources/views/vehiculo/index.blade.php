@@ -115,7 +115,7 @@
 </head>
 <body>
 @auth
-        @if (Auth::user()->role === 'trabajador')
+        @if (Auth::user()->role === 'admin')
             {{-- Navbar ADMIN --}}
             @include('forms', ['Modo' => 'Encabezado'])
 
@@ -145,6 +145,7 @@
                             <th>Modelo</th>
                             <th>Placa</th>
                             <th>Característica</th>
+                            <th>Observaciones</th>
                             <th>Conductor</th>
                             <th>Estado</th>
                             <th>Acciones</th>
@@ -162,6 +163,7 @@
 
                                 {{-- Característica --}}
                                 <td>{{ $vehiculos->caracteristica->nombre ?? 'N/A' }}</td>
+                                <td>{{ $vehiculos->observaciones }}</td>
                                 
                                 {{-- Conductor --}}
                                 <td>{{ $vehiculos->conductor->nombre ?? 'N/A' }}</td>

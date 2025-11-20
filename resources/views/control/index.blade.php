@@ -152,7 +152,7 @@ body {
 
 <body>
 @auth
-        @if (Auth::user()->role === 'trabajador')
+        @if (Auth::user()->role === 'admin')
             {{-- Navbar ADMIN --}}
             @include('forms', ['Modo' => 'Encabezado'])
 

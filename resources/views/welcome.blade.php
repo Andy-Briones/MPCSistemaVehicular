@@ -64,7 +64,7 @@
 </head>
 <body>
     @auth
-        @if (Auth::user()->role === 'trabajador')
+        @if (Auth::user()->role === 'admin')
           {{-- Navbar ADMIN --}}
           @include('forms', ['Modo' => 'Encabezado'])
 
@@ -76,6 +76,7 @@
         <div class="hero-box">
             <img src="{{ asset('Imgs/logoCaja.png') }}" class="logo-image" alt="Logo Municipalidad">
 
+            {{--  Boton de registro  --}}
             <div class="register-link">
                 <a class="btn bg-success" href="{{ route('register') }}">
                     Registrarse

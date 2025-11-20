@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('dni');
             $table->string('licencia');
-            $table->date('vencimientoLice');
+            $table->date('vencimientoLice')->nullable();
             $table->string('telefono');
             $table->string('categoriaLicencia');
             $table->string('area');

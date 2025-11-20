@@ -77,7 +77,7 @@
 </head>
 <body>
     @auth
-        @if (Auth::user()->role === 'trabajador')
+        @if (Auth::user()->role === 'admin')
             {{-- Navbar ADMIN --}}
             @include('forms', ['Modo' => 'Encabezado'])
         @elseif (Auth::user()->role === 'trabajador')
@@ -93,6 +93,7 @@
             <p><i class="bi bi-person-fill"></i> Nombre: Andy Briones</p>
             <p><i class="bi bi-envelope-fill"></i> Correo: gabryelb027@gmail.com</p>
             <p><i class="bi bi-telephone-fill"></i> Teléfono: 980608001</p>
+            <p><i class="bi bi-person-fill"></i> Practicante Ing. Sistemas Comutacionales 8to Ciclo</p>
         </div>
     </div>
 

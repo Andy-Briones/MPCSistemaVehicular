@@ -25,6 +25,7 @@ class ControlController extends Controller
         // Solo roles admin o trabajador
         $this->middleware('role:admin,trabajador');
     }
+
     //
     public function index(Request $request)
     {
@@ -95,6 +96,28 @@ class ControlController extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate([
+            'vehiculo_id' => 'required|exists:mpcsvehiculos,id',
+
+            'soatInicio' => 'required|date',
+
+            'revisionTecIni' => 'required|date',
+
+            'lugarD' => 'required|string|max:255',
+
+            // imágenes opcionales, pero si vienen deben ser válidas
+            'imagenSoat' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'imagenRev'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            ], [
+                'vehiculo_id.required' => 'Debe seleccionar un vehículo.',
+                'vehiculo_id.exists' => 'El vehículo seleccionado no es válido.',
+
+                'soatFinal.after' => 'La fecha final del SOAT debe ser mayor que la fecha inicial.',
+                'revisionTecFin.after' => 'La fecha final de revisión debe ser mayor que la inicial.',
+
+                'imagenSoat.image' => 'La imagen del SOAT debe ser una imagen válida.',
+                'imagenRev.image' => 'La imagen de la revisión debe ser una imagen válida.',
+        ]);
         // Guardar imagen
         $data = $request->except('_token');
 
@@ -150,6 +173,18 @@ class ControlController extends Controller
     public function update(Request $request, $id)
     {        
         $control = mpcscontrol::findOrFail($id);
+        $request->validate([
+            'vehiculo_id' => 'required|exists:mpcsvehiculos,id',
+
+            'soatInicio' => 'required|date',
+
+            'revisionTecIni' => 'required|date',
+
+            'lugarD' => 'required|string|max:255',
+
+            'imagenSoat' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'imagenRev'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+        ]);
 
         $data = $request->except(['_token', '_method']);
 
@@ -209,122 +244,6 @@ class ControlController extends Controller
     {
         
     }
-    // public function descargarWord($id)
-    // {
-    //     // Carga completa del control con su vehículo y relaciones
-    //     $control = MpcsControl::with(['vehiculo.conductor', 'vehiculo.caracteristica'])->findOrFail($id);
-    //     $vehiculo = $control->vehiculo;
-    //     $caract = $vehiculo->caracteristica;
-    //     $conductor = $vehiculo->conductor;
-
-    //     // Crear documento Word
-    //     $phpWord = new PhpWord();
-    //     $section = $phpWord->addSection([
-    //         'marginLeft' => 800,
-    //         'marginRight' => 800,
-    //         'marginTop' => 600,
-    //         'marginBottom' => 600,
-    //     ]);
-
-    //     // ===== ENCABEZADO =====
-    //     $center = ['alignment' => 'center'];
-    //     $section->addText("REPÚBLICA DEL PERÚ", ['bold' => true, 'size' => 12], $center);
-    //     $section->addText("SUPERINTENDENCIA NACIONAL DE LOS REGISTROS PÚBLICOS", ['bold' => true, 'size' => 10], $center);
-    //     $section->addText("TARJETA DE IDENTIFICACIÓN VEHICULAR ELECTRÓNICA", ['bold' => true, 'size' => 12], $center);
-    //     $section->addText("ZONA REGISTRAL N° II - CAJAMARCA", ['size' => 10], $center);
-
-    //     $section->addTextBreak(1);
-
-    //     // ===== DATOS PRINCIPALES =====
-    //     $section->addText("Condición: " . ($vehiculo->condicion ?? '-'));
-    //     $section->addText("Placa Actual: " . ($vehiculo->placaActual ?? '-'), ['bold' => true, 'size' => 12]);
-    //     $section->addText("Placa Anterior: " . ($vehiculo->placaAnterior ?? '-'));
-    //     $section->addTextBreak(1);
-
-    //     // ===== DATOS DEL VEHÍCULO =====
-    //     $section->addText("Datos del Vehículo", ['bold' => true, 'underline' => 'single']);
-    //     $section->addTextBreak(0.5);
-
-    //     // Tabla 1 (categoría / año fabric.)
-    //     $table1 = $section->addTable();
-    //     $table1->addRow();
-    //     $table1->addCell(4500)->addText("Categoría: " . ($vehiculo->categoria ?? '-'));
-    //     $table1->addCell(4500)->addText("Año Fabric.: " . ($vehiculo->añoFabricacion ?? '-'));
-
-    //     $table1->addRow();
-    //     $table1->addCell(4500)->addText("Marca: " . ($vehiculo->marca ?? '-'));
-    //     $table1->addCell(4500)->addText("Año Modelo: " . ($vehiculo->añoModelo ?? '-'));
-
-    //     $table1->addRow();
-    //     $table1->addCell(4500)->addText("Modelo: " . ($vehiculo->modelo ?? '-'));
-    //     $table1->addCell(4500)->addText("Color: " . ($vehiculo->color ?? '-'));
-
-    //     $table1->addRow();
-    //     $table1->addCell(4500)->addText("Número VIN: " . ($vehiculo->numeroVin ?? '-'));
-    //     $table1->addCell(4500)->addText("Número de Serie: " . ($vehiculo->numeroVin ?? '-')); // mismo campo del ejemplo
-
-    //     $table1->addRow();
-    //     $table1->addCell(4500)->addText("Número Motor: " . ($vehiculo->numeroMotor ?? '-'));
-    //     $table1->addCell(4500)->addText("Carrocería: " . ($vehiculo->carroceria ?? '-'));
-
-    //     $table1->addRow();
-    //     $table1->addCell(4500)->addText("Potencia: " . ($vehiculo->potencia ?? '-'));
-    //     $table1->addCell(4500)->addText(""); // vacío igual que ejemplo
-
-    //     $table1->addRow();
-    //     $table1->addCell(4500)->addText("Form. Rod: " . ($vehiculo->formrod ?? '-'));
-    //     $table1->addCell(4500)->addText("Versión: " . ($vehiculo->version ?? '-'));
-
-    //     $table1->addRow();
-    //     $table1->addCell(4500)->addText("Combustible: " . ($vehiculo->combustible ?? '-'));
-    //     $table1->addCell(4500)->addText(""); // relleno
-
-    //     $section->addTextBreak(1);
-
-    //     // ===== CARACTERÍSTICAS TÉCNICAS =====
-    //     $section->addText("Características Técnicas", ['bold' => true, 'underline' => 'single']);
-    //     $section->addTextBreak(0.5);
-
-    //     $table2 = $section->addTable();
-
-    //     $carRows = [
-    //         ['Asientos', $caract->asientos],
-    //         ['Pasajeros', $caract->pasajeros],
-    //         ['Ruedas', $caract->ruedas],
-    //         ['Ejes', $caract->ejes],
-    //         ['Cilindros', $caract->cilindros],
-    //         ['Longitud', $caract->longitud],
-    //         ['Altura', $caract->altura],
-    //         ['Ancho', $caract->ancho],
-    //         ['Cilindrada', $caract->cilindrada],
-    //         ['P. Bruto', $caract->pesoBruto],
-    //         ['P. Neto', $caract->pesoNeto],
-    //         ['Carga Útil', $caract->cargaUtil],
-    //     ];
-
-    //     foreach ($carRows as [$label, $value]) {
-    //         $table2->addRow();
-    //         $table2->addCell(4500)->addText("$label: " . ($value ?? '-'));
-    //     }
-
-    //     $section->addTextBreak(2);
-
-    //     // ===== CONDUCTOR =====
-    //     $section->addText("Conductor: " . ($conductor->nombre ?? '-') . " " . ($conductor->apellido ?? '-'), ['bold' => true]);
-    //     $section->addText("Lugar de destino: " . ($control->lugarD ?? '-'));
-
-    //     $section->addTextBreak(2);
-    //     $section->addText("Registrador Público: ____________________________", ['size' => 10]);
-    //     $section->addText("Zona Registral: _________________________________", ['size' => 10]);
-
-    //     // ===== DESCARGA =====
-    //     $fileName = 'Tarjeta_Vehicular_' . $vehiculo->placaActual . '.docx';
-    //     $tempFile = tempnam(sys_get_temp_dir(), 'vehiculo');
-    //     $writer = IOFactory::createWriter($phpWord, 'Word2007');
-    //     $writer->save($tempFile);
-
-    //     return response()->download($tempFile, $fileName)->deleteFileAfterSend(true);
-    // }
 
     public function descargarWord($id)
 {
