@@ -10,12 +10,12 @@
             <div class="row g-3">
                 <div class="col-md-6">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese el nombre"
+                    <input type="text" name="nombre" id="nombre" required class="form-control" placeholder="Ingrese el nombre"
                         value="{{ old('nombre', isset($caracteristica->nombre) ? $caracteristica->nombre : '') }}">
                 </div>
                 <div class="col-md-6">
                     <label for="asientos" class="form-label">N° Asientos</label>
-                    <input type="number" name="asientos" id="asientos" class="form-control" placeholder="Ej: 4"
+                    <input type="number" name="asientos" id="asientos" required class="form-control" placeholder="Ej: 4"
                         value="{{ old('asientos', isset($caracteristica->asientos) ? $caracteristica->asientos : '') }}">
                 </div>
                 <div class="col-md-6">
@@ -94,37 +94,37 @@
             <div class="row g-3">
                 <div class="col-md-6">
                     <label for="nombre" class="form-label"> Nombre</label>
-                    <input type="text" name="nombre" id="nombre" class="form-control"
+                    <input type="text" name="nombre" id="nombre" class="form-control" required
                         value="{{ old('nombre', isset($conductor->nombre) ? $conductor->nombre : '') }}">
                 </div>
                 <div class="col-md-6">
                     <label for="dni" class="form-label"> DNI</label>
-                    <input type="text" name="dni" id="dni" class="form-control"
+                    <input type="text" name="dni" id="dni" class="form-control" required
                         value="{{ old('dni', isset($conductor->dni) ? $conductor->dni : '') }}">
                 </div>
                 <div class="col-md-6">
                     <label for="licencia" class="form-label"> Licencia</label>
-                    <input type="text" name="licencia" id="licencia" class="form-control"
+                    <input type="text" name="licencia" id="licencia" class="form-control" required
                         value="{{ old('licencia', isset($conductor->licencia) ? $conductor->licencia : '') }}">
                 </div>
                 <div class="col-md-6">
                     <label for="telefono" class="form-label"> Telefono</label>
-                    <input type="text" name="telefono" id="telefono" class="form-control"
+                    <input type="text" name="telefono" id="telefono" class="form-control" required
                         value="{{ old('telefono', isset($conductor->telefono) ? $conductor->telefono : '') }}">
                 </div>
                 <div class="col-md-6">
                     <label for="vencimientoLice" class="form-label">Fecha de Vencimiento de la Licencia</label>
-                    <input type="date" name="vencimientoLice" id="vencimientoLice" class="form-control"
+                    <input type="date" name="vencimientoLice" id="vencimientoLice" class="form-control" required
                         value="{{ old('vencimientoLice', $conductor->vencimientoLice ?? '') }}">
                 </div>
                 <div class="col-md-6">
                     <label for="categoriaLicencia" class="form-label"> Categoria de la Licencia</label>
-                    <input type="text" name="categoriaLicencia" id="categoriaLicencia" class="form-control"
+                    <input type="text" name="categoriaLicencia" id="categoriaLicencia" class="form-control" required
                         value="{{ old('categoriaLicencia', isset($conductor->categoriaLicencia) ? $conductor->categoriaLicencia : '') }}">
                 </div>
                 <div class="col-md-6">
                     <label for="area" class="form-label"> Area </label>
-                    <input type="text" name="area" id="area" class="form-control"
+                    <input type="text" name="area" id="area" class="form-control" required
                         value="{{ old('area', isset($conductor->area) ? $conductor->area : '') }}">
                 </div>
             </div>
@@ -142,92 +142,92 @@
             <div class="row g-3">
                 <div class="col-md-6">
                     <label for="codPatrimonial" class="form-label">Cod. Patrimonial</label>
-                    <input type="text" name="codPatrimonial" id="codPatrimonial" class="form-control"
+                    <input type="text" name="codPatrimonial" id="codPatrimonial" class="form-control" required minlength="12" maxlength="12"
                         value="{{ isset($vehiculo->codPatrimonial) ? $vehiculo->codPatrimonial : ''}}">
                 </div>
                 <div class="col-md-6">
                     <label for="categoria" class="form-label"> Categoria</label>
-                    <input type="text" name="categoria" id="categoria" class="form-control"
+                    <input type="text" name="categoria" id="categoria" class="form-control" required
                         value="{{ isset($vehiculo->categoria) ? $vehiculo->categoria : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="marca" class="form-label"> Marca</label>
-                    <input type="text" name="marca" id="marca" class="form-control"
+                    <input type="text" name="marca" id="marca" class="form-control" required
                         value="{{ isset($vehiculo->marca) ? $vehiculo->marca : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="modelo" class="form-label"> Modelo</label>
-                    <input type="text" name="modelo" id="modelo" class="form-control"
+                    <input type="text" name="modelo" id="modelo" class="form-control" required
                         value="{{ isset($vehiculo->modelo) ? $vehiculo->modelo : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="color" class="form-label"> Color</label>
-                    <input type="text" name="color" id="color" class="form-control"
+                    <input type="text" name="color" id="color" class="form-control" required
                         value="{{ isset($vehiculo->color) ? $vehiculo->color : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="numeroVin" class="form-label"> Número Vin</label>
-                    <input type="text" name="numeroVin" id="numeroVin" class="form-control"
+                    <input type="text" name="numeroVin" id="numeroVin" class="form-control" required
                         value="{{ isset($vehiculo->numeroVin) ? $vehiculo->numeroVin : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="numeroMotor" class="form-label"> Número Motor</label>
-                    <input type="text" name="numeroMotor" id="numeroMotor" class="form-control"
+                    <input type="text" name="numeroMotor" id="numeroMotor" class="form-control" required
                         value="{{ isset($vehiculo->numeroMotor) ? $vehiculo->numeroMotor : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="carroceria" class="form-label"> Carroceria</label>
-                    <input type="text" name="carroceria" id="carroceria" class="form-control"
+                    <input type="text" name="carroceria" id="carroceria" class="form-control" required
                         value="{{ isset($vehiculo->carroceria) ? $vehiculo->carroceria : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="potencia" class="form-label"> Potencia</label>
-                    <input type="text" name="potencia" id="potencia" class="form-control"
+                    <input type="text" name="potencia" id="potencia" class="form-control" required
                         value="{{ isset($vehiculo->potencia) ? $vehiculo->potencia : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="formrod" class="form-label"> Form. Rod.</label>
-                    <input type="text" name="formrod" id="formrod" class="form-control"
+                    <input type="text" name="formrod" id="formrod" class="form-control" required
                         value="{{ isset($vehiculo->formrod) ? $vehiculo->formrod : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="combustible" class="form-label"> Combustible</label>
-                    <input type="text" name="combustible" id="combustible" class="form-control"
+                    <input type="text" name="combustible" id="combustible" class="form-control" required
                         value="{{ isset($vehiculo->combustible) ? $vehiculo->combustible : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="aniooFabricacion" class="form-label"> Año Fabricacion</label>
-                    <input type="date" name="aniooFabricacion" id="aniooFabricacion" class="form-control"
+                    <input type="date" name="aniooFabricacion" id="aniooFabricacion" class="form-control" required
                         value="{{ isset($vehiculo->aniooFabricacion) ? $vehiculo->aniooFabricacion : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="anioModelo" class="form-label"> Año Modelo</label>
-                    <input type="date" name="anioModelo" id="anioModelo" class="form-control"
+                    <input type="date" name="anioModelo" id="anioModelo" class="form-control" required
                         value="{{ isset($vehiculo->anioModelo) ? $vehiculo->anioModelo : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="version" class="form-label"> Version</label>
-                    <input type="text" name="version" id="version" class="form-control"
+                    <input type="text" name="version" id="version" class="form-control" required
                         value="{{ isset($vehiculo->version) ? $vehiculo->version : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="placaActual" class="form-label"> Placa Actual</label>
-                    <input type="text" name="placaActual" id="placaActual" class="form-control"
+                    <input type="text" name="placaActual" id="placaActual" class="form-control" required
                         value="{{ isset($vehiculo->placaActual) ? $vehiculo->placaActual : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="placaAnterior" class="form-label"> Placa Anterior</label>
-                    <input type="text" name="placaAnterior" id="placaAnterior" class="form-control"
+                    <input type="text" name="placaAnterior" id="placaAnterior" class="form-control" required
                         value="{{ isset($vehiculo->placaAnterior) ? $vehiculo->placaAnterior : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="condicion" class="form-label"> Condición</label>
-                    <input type="text" name="condicion" id="condicion" class="form-control"
+                    <input type="text" name="condicion" id="condicion" class="form-control" required
                         value="{{ isset($vehiculo->condicion) ? $vehiculo->condicion : '' }}">
                 </div>
                 <div class="col-md-6">
                     <label for="observaciones" class="form-label"> Observaciones</label>
-                    <input type="text" name="observaciones" id="observaciones" class="form-control"
+                    <input type="text" name="observaciones" id="observaciones" class="form-control" required
                         value="{{ isset($vehiculo->observaciones) ? $vehiculo->observaciones : '' }}">
                 </div>
                 <div class="col-md-6">
@@ -272,32 +272,32 @@
             <div class="row g-3">
                 <div class="col-md-6">
                     <label for="soatInicial" class="form-label">Fecha Inicial de Soat</label>
-                    <input type="date" name="soatInicial" id="soatInicial" class="form-control"
+                    <input type="date" name="soatInicial" id="soatInicial" class="form-control" required
                         value="{{ old('soatInicial', $control->soatInicial ?? '') }}">
                 </div>
                 <div class="col-md-6">
                     <label for="soatFinal" class="form-label">Fecha de Vencimiento del Soat</label>
-                    <input type="date" name="soatFinal" id="soatFinal" class="form-control"
+                    <input type="date" name="soatFinal" id="soatFinal" class="form-control" required
                         value="{{ old('soatFinal', $control->soatFinal ?? '') }}">
                 </div>
                 <div class="col-md-6">
                     <label for="revisionTecIn" class="form-label">Fecha Inicial de la Revisión Técnica</label>
-                    <input type="date" name="revisionTecIn" id="revisionTecIn" class="form-control"
+                    <input type="date" name="revisionTecIn" id="revisionTecIn" class="form-control" required
                         value="{{ old('revisionTecIn', $control->revisionTecIn ?? '') }}">
                 </div>
                 <div class="col-md-6">
                     <label for="revisionTecFin" class="form-label">Fecha de Vencimiento de la Revisión Técnica</label>
-                    <input type="date" name="revisionTecFin" id="revisionTecFin" class="form-control"
+                    <input type="date" name="revisionTecFin" id="revisionTecFin" class="form-control" required
                         value="{{ old('revisionTecFin', $control->revisionTecFin ?? '') }}">
                 </div>
                 <div class="col-md-6">
                     <label for="tarjetaP" class="form-label">Tarjeta de Producto</label>
-                    <input type="text" name="tarjetaP" id="tarjetaP" class="form-control"
+                    <input type="text" name="tarjetaP" id="tarjetaP" class="form-control" required
                         value="{{ old('tarjetaP', $control->tarjetaP ?? '') }}">
                 </div>
                 <div class="col-md-6">
                     <label for="lugarD" class="form-label">Lugar de Destino</label>
-                    <input type="text" name="lugarD" id="lugarD" class="form-control"
+                    <input type="text" name="lugarD" id="lugarD" class="form-control" required
                         value="{{ old('lugarD', $control->lugarD ?? '') }}">
                 </div>
                 <div class="col-md-6">
@@ -313,7 +313,7 @@
                 {{-- NUEVO: Input para subir imagen --}}
                 <div class="col-md-6">
                     <label for="imagenSoat" class="form-label">Imagen SOAT (opcional)</label>
-                    <input type="file" name="imagenSoat" id="imagenSoat" class="form-control" accept="image/*">
+                    <input type="file" name="imagenSoat" id="imagenSoat" required class="form-control" accept="image/*">
                     @error('imagenSoat') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
 
@@ -329,7 +329,7 @@
                 {{-- Imagen de la Revision Tecnica --}}
                 <div class="col-md-6">
                     <label for="imagenRev" class="form-label">Imagen Revision Técnica (opcional)</label>
-                    <input type="file" name="imagenRev" id="imagenRev" class="form-control" accept="image/*">
+                    <input type="file" name="imagenRev" id="imagenRev" required class="form-control" accept="image/*">
                     @error('imagenRev') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
 

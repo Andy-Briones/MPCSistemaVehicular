@@ -29,7 +29,7 @@ class ControlController extends Controller
     //
     public function index(Request $request)
     {
-        $query = MpcsControl::with(['vehiculo.conductor']);
+        $query = mpcscontrol::with(['vehiculo.conductor']);
 
         //Busqueda por placa
         if ($request->filled('search')) {
@@ -50,11 +50,11 @@ class ControlController extends Controller
         }
     }
 
-        $mpcscontrols = $query->paginate(10);
+        $mpcscontrol = $query->paginate(10);
 
         //Alertas
         $alerta = [];
-        foreach($mpcscontrols as $control)
+        foreach($mpcscontrol as $control)
         {
             $hoy = Carbon::now();
 
